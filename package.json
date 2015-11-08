@@ -1,0 +1,39 @@
+{
+  "name": "react-top-friends",
+  "version": "1.0.0",
+  "description": "Get your top friend list from FB API with React",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src/ devServer.js",
+    "start": "npm run dev",
+    "dev": "./node_modules/.bin/babel-node devServer.js"
+  },
+  "author": "Leo Hsieh <leo0924@gmail.com> (http://leoj.js.org)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.1.1",
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "eslint": "^1.7.3",
+    "express": "^4.13.3",
+    "file": "^0.2.2",
+    "file-loader": "^0.8.4",
+    "loader": "^2.0.0",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.1.1",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.2",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.4.1"
+  },
+  "dependencies": {
+    "async": "^1.5.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  }
+}
