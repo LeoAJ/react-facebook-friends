@@ -1,7 +1,7 @@
 {
   "name": "react-top-friends",
   "version": "1.0.0",
-  "description": "Get your top friend list from FB API with React",
+  "description": "web app to rank your friendship on Facebook",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/ devServer.js",
@@ -10,13 +10,25 @@
   },
   "author": "Leo Hsieh <leo0924@gmail.com> (http://leoj.js.org)",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "babel",
+    "ES6",
+    "webpack",
+    "purecss",
+    "Facebook API"
+  ],
   "devDependencies": {
-    "babel-cli": "^6.1.1",
-    "babel-core": "^6.0.20",
-    "babel-eslint": "^4.1.3",
-    "babel-loader": "^6.0.1",
-    "babel-preset-es2015": "^6.0.15",
-    "babel-preset-react": "^6.0.15",
+    "babel": "^6.0.15",
+    "babel-cli": "^6.1.2",
+    "babel-core": "^6.1.2",
+    "babel-eslint": "^4.1.5",
+    "babel-loader": "^6.1.0",
+    "babel-plugin-syntax-async-functions": "^6.1.18",
+    "babel-plugin-transform-regenerator": "^6.1.18",
+    "babel-polyfill": "^6.1.19",
+    "babel-preset-es2015": "^6.1.2",
+    "babel-preset-react": "^6.1.2",
     "eslint": "^1.7.3",
     "express": "^4.13.3",
     "file": "^0.2.2",
@@ -32,8 +44,9 @@
     "webpack-hot-middleware": "^2.4.1"
   },
   "dependencies": {
-    "async": "^1.5.0",
+    "radium": "^0.14.3",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "reqwest": "^2.0.5"
   }
 }

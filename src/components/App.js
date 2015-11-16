@@ -5,7 +5,7 @@ import Profile from './Profile';
 import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
 import config from '../../config/FacebookAPIConfig';
-import { getData } from '../util';
+import { getData } from '../utils/helper';
 
 class App extends Component {
 
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    document.body.style.backgroundColor = '#DADADA';
+    document.body.style.backgroundColor = 'rgb(233, 234, 237)';
   }
 
   componentDidMount() {
@@ -29,15 +29,10 @@ class App extends Component {
       FB.Event.subscribe('auth.statusChange', (res) => {
 
         getData()
-        .then((data) => {
-          this.setState({
-            login: res.status === 'connected',
-            profileData: data.profileData
-          });
-        })
+        .then(data => this.setState({ login: res.status === 'connected', profileData: data.profileData, friendsData: data.friendsData }))
         .catch((err) => {
-          console.log(err);
-          console.log('EEE');
+          console.log('Error !!!!!!!!!!!!!!!');
+          console.error(err);
           this.setState({
             login: res.status === 'connected',
             hasErr: true
@@ -50,9 +45,7 @@ class App extends Component {
     // Load the SDK asynchronously
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
+      if (d.getElementById(id)) { return; }
       js = d.createElement(s); js.id = id;
       js.src = '//connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
@@ -61,7 +54,7 @@ class App extends Component {
   }
 
   _click() {
-    FB.login();
+    FB.login(() => { }, { scope: ['user_posts', 'read_custom_friendlists'] });
   }
 
   render() {
@@ -80,9 +73,9 @@ class App extends Component {
     return (
       <div>
         {this.state.login ? (
-          <div className="ui stackable three column grid">
+          <div className="pure-g">
             <Profile profileData={this.state.profileData} />
-            <FriendList />
+            <FriendList friendsData={this.state.friendsData} />
           </div>
         ) : loginDom}
       </div>
