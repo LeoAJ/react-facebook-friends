@@ -1,6 +1,7 @@
+
 import { LIKE_POINT, COMMENT_POINT, POST_POINT, POST, LIKE, COMMENT } from './constants';
 
-class Data {
+class Feed {
 
   constructor(currentUserId) {
     this.currentUserId = currentUserId;
@@ -8,11 +9,12 @@ class Data {
     this.info = [];
   }
 
-  add({ feedId, user, type, score = LIKE_POINT }) {
+  add({ user, type, score = LIKE_POINT }) {
 
     const {
       id,
       name,
+      link,
       picture: {
         data: {
           url
@@ -45,6 +47,7 @@ class Data {
         name,
         score,
         url,
+        link,
         POST: type === POST ? 1 : 0,
         LIKE: type === LIKE ? 1 : 0,
         COMMENT: type === COMMENT ? 1 : 0
@@ -60,14 +63,29 @@ class Data {
     });
   }
 
-  getKey() {
-    return this.key;
-  }
-
-  getInfo() {
-    return this.info;
+  set userId(currentUserId) {
+    this.currentUserId = currentUserId;
   }
 
 }
 
-export default Data;
+// singleton
+function singleton() {
+  let instance;
+  return {
+    get(currentUserId) {
+
+      if (!instance) {
+        instance = new Feed(currentUserId);
+      }
+
+      if (!instance.currentUserId) {
+        instance.userId = currentUserId;
+      }
+
+      return instance;
+    }
+  };
+};
+
+export default singleton().get;

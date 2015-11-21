@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Label from './Label';
+import Radium from 'radium';
+import { facebookBlue } from '../utils/constants';
 
 class FriendItem extends Component {
 
@@ -7,9 +9,18 @@ class FriendItem extends Component {
     super(props);
   }
 
+  static PropTypes = {
+    name: PropTypes.string.isRequired,
+    rank: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+    LIKE: PropTypes.string,
+    COMMENT: PropTypes.string,
+    POST: PropTypes.string
+  }
+
   render() {
 
-    const { name, rank, url, LIKE, COMMENT, POST } = this.props;
+    const { name, rank, link, url, LIKE, COMMENT, POST } = this.props;
 
     const colors = {
       0: '#DB2828',
@@ -32,8 +43,18 @@ class FriendItem extends Component {
         margin: '5px auto',
         maxWidth: '750px',
         backgroundColor: 'white',
+        borderBottom: '1px solid #eee',
+        '@media (max-width: 48em)': {
+          position: 'relative'
+        }
+      },
+      anchor: {
         padding: '1em 1em',
-        borderBottom: '1px solid #eee'
+        display: 'block',
+        color: 'black',
+        ':hover': {
+          backgroundColor: '#f7f7f7'
+        }
       },
       rank: {
         position: 'relative',
@@ -49,7 +70,7 @@ class FriendItem extends Component {
         backgroundColor: colors[(rank - 1) % 10]
       },
       imgWrapper: {
-        margin: '10px',
+        padding: '10px',
         display: 'inline-block'
       },
       img: {
@@ -57,7 +78,10 @@ class FriendItem extends Component {
         borderRadius: '3px'
       },
       name: {
-
+        textAlign: 'center',
+        color: facebookBlue,
+        fontWeight: 'bold',
+        fontSize: '0.75em'
       },
       clear: {
         clear: 'both'
@@ -72,22 +96,20 @@ class FriendItem extends Component {
 
     return (
       <div style={style.item}>
-        {/* RANK */}
-        <div style={style.rank}>{rank}</div>
-        <div style={style.imgWrapper}>
-          <img src={url} alt={name} style={style.img} />
-        </div>
-        {/* <div style={style.name}>{name}</div> */}
-        {/* LIKE */}
-        <Label type={'like'} value={LIKE} />
-        {/* COMMENT */}
-        <Label type={'comment'} value={COMMENT} />
-        {/* POST */}
-        <Label type={'post'} value={POST} />
-        <div style={style.clear}></div>
+        <a target="_blank" href={link} style={style.anchor}>
+          <div style={style.rank}>{rank}</div>
+          <div style={style.imgWrapper}>
+            <img src={url} alt={name} style={style.img} />
+            <div style={style.name}>{name}</div>
+          </div>
+          <Label type={'like'} value={LIKE} />
+          <Label type={'comment'} value={COMMENT} />
+          <Label type={'post'} value={POST} />
+          <div style={style.clear}></div>
+        </a>
       </div>
     );
   }
 }
 
-export default FriendItem;
+export default Radium(FriendItem);

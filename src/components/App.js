@@ -4,16 +4,17 @@ import React, { Component } from 'react';
 import Profile from './Profile';
 import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
-import config from '../../config/FacebookAPIConfig';
-import { getData } from '../utils/helper';
+import config from '../../config';
+import { getData } from '../utils/util';
+import Ribbon from './Ribbon';
+import Spinner from './Spinner';
+import Login from './Login';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      login: false
-    };
+    this.state = { status: 'loading' };
   }
 
   componentWillMount() {
@@ -26,15 +27,27 @@ class App extends Component {
 
       FB.init(config);
 
-      FB.Event.subscribe('auth.statusChange', (res) => {
+      FB.getLoginStatus((response) => {
+
+        if (response.status === 'unknown') {
+          // show log in
+          this.setState({ status: response.status });
+        }
+
+      });
+
+      FB.Event.subscribe('auth.statusChange', (response) => {
+
+        // start spinner
+        this.setState({ status: 'loading' });
 
         getData()
-        .then(data => this.setState({ login: res.status === 'connected', profileData: data.profileData, friendsData: data.friendsData }))
+        .then(data => this.setState({
+          status: response.status, profile: data.profile, myFriends: data.myFriends
+        }))
         .catch((err) => {
-          console.log('Error !!!!!!!!!!!!!!!');
-          console.error(err);
           this.setState({
-            login: res.status === 'connected',
+            status: response.status === 'connected',
             hasErr: true
           });
         });
@@ -54,30 +67,33 @@ class App extends Component {
   }
 
   _click() {
-    FB.login(() => { }, { scope: ['user_posts', 'read_custom_friendlists'] });
+    FB.login(() => {}, { scope: ['user_posts', 'read_custom_friendlists'] });
+  }
+
+  mainRender(state) {
+
+    const { profile, myFriends, status } = state;
+
+    if (status === 'unknown') {
+      return <Login FB_login={this._click} />;
+    } else if (status === 'connected') {
+      return (
+        <div className="pure-g">
+          <Profile {...profile} />
+          <FriendList myFriends={myFriends} />
+        </div>
+      );
+    } else {
+      return <Spinner />
+    }
   }
 
   render() {
 
-    const loginDom = (
-      <div className="ui middle aligned center aligned grid" style={{ height: '400px' }}>
-        <div className="column six wide">
-          <h2 className="ui header">header</h2>
-          <div className="ui piled segment">
-            <p>Facebook required your permission to do further action</p>
-            <button className="ui fluid large primary button" onClick={this._click.bind(this)}>OK</button>
-          </div>
-        </div>
-      </div>);
-
     return (
       <div>
-        {this.state.login ? (
-          <div className="pure-g">
-            <Profile profileData={this.state.profileData} />
-            <FriendList friendsData={this.state.friendsData} />
-          </div>
-        ) : loginDom}
+        <Ribbon />
+        {this.mainRender(this.state)}
       </div>
     );
   }

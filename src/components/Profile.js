@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
+import { facebookBlue } from '../utils/constants';
 
 class Profile extends Component {
 
@@ -7,12 +8,19 @@ class Profile extends Component {
     super(props);
   }
 
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    total_count: PropTypes.number.isRequired
+  }
+
   render() {
 
-    const { name, link, url, total_count } = this.props.profileData,
+    const { name, link, url, total_count } = this.props,
           style = {
             profileStyle: {
-              background: 'rgb(58, 87, 149)',
+              background: facebookBlue,
               color: '#fff',
               '@media (min-width: 48em)': {
                 position: 'fixed',
@@ -45,7 +53,7 @@ class Profile extends Component {
     return (
       <div className="pure-u-1 pure-u-md-1-4" style={style.profileStyle}>
         <div style={style.headerStyle}>
-          <a href={link}>
+          <a target="_blank" href={link}>
             <img src={url} alt="profile picture" style={style.imgStyle} />
           </a>
           <h1 style={style.nameStyle}>{name}</h1>
