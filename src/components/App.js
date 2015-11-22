@@ -41,16 +41,16 @@ class App extends Component {
         // start spinner
         this.setState({ status: 'loading' });
 
-        getData()
-        .then(data => this.setState({
-          status: response.status, profile: data.profile, myFriends: data.myFriends
-        }))
-        .catch((err) => {
-          this.setState({
-            status: response.status === 'connected',
-            hasErr: true
-          });
-        });
+        (async () => {
+
+          try {
+            const { profile, myFriends } = await getData();
+            this.setState({ status: response.status, profile, myFriends });
+          } catch (e) {
+            this.setState({ status: 'err' });
+          }
+
+        })();
 
       });
     };
@@ -74,7 +74,9 @@ class App extends Component {
 
     const { profile, myFriends, status } = state;
 
-    if (status === 'unknown') {
+    if (status === 'err') {
+      return <ErrMsg />
+    } else if (status === 'unknown') {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
       return (

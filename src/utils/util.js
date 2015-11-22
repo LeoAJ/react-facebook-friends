@@ -56,11 +56,11 @@ function analyze({ feed, tagged }, currentUserId) {
 
     });
 
-  })
+  });
 
 }
 
-export function getData() {
+export async function getData() {
 
   return new Promise((resolve, reject) => {
 
@@ -106,8 +106,6 @@ export function getData() {
           });
         })
         .catch((e) => {
-          console.log(e);
-          console.log('error on promise');
           reject(e);
         });
 
