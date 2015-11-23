@@ -47,6 +47,7 @@ class App extends Component {
             const { profile, myFriends } = await getData();
             this.setState({ status: response.status, profile, myFriends });
           } catch (e) {
+            console.error(e);
             this.setState({ status: 'err' });
           }
 

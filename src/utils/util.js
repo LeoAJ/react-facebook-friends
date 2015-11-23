@@ -1,27 +1,31 @@
 /*global FB*/
 
-import async from 'async';
 import getFeedInstance from './Feed';
 import { POST, LIKE, COMMENT } from './constants';
 import { collectDataWithPaging } from './paging';
 
-function analyze({ feed, tagged }, currentUserId) {
+function analyze({ feed, tagged }, feedInstance) {
 
   const taggedIds = tagged.data.map(tag => tag.id);
-  const feedInstance = getFeedInstance(currentUserId);
+  const promises = feed.data.map((item) => {
 
-  return new Promise((resolve, reject) => {
-
-    async.each(feed.data, (item, callback) => {
+    return new Promise((resolve, reject) => {
 
       // ignore tagged by friends
       if (taggedIds.indexOf(item.id) === -1) {
 
-        // count likes
-        item.likes && collectDataWithPaging(item.likes, LIKE);
+        try {
 
-        // count comments
-        item.comments && collectDataWithPaging(item.comments, COMMENT);
+          // count likes
+          item.likes && collectDataWithPaging(item.likes, LIKE);
+
+          // count comments
+          item.comments && collectDataWithPaging(item.comments, COMMENT);
+
+        } catch (e) {
+          console.error(e);
+          reject(e);
+        }
 
         // count posts
         feedInstance.add({
@@ -32,19 +36,13 @@ function analyze({ feed, tagged }, currentUserId) {
 
       }
 
-      callback();
-
-    }, (err) => {
-
-      if (err) {
-        reject(err);
-      } else {
-        resolve(feedInstance.sortByScore());
-      }
+      resolve();
 
     });
 
   });
+
+  return Promise.all(promises);
 
 }
 
@@ -84,7 +82,9 @@ export function getData() {
         (async () => {
 
           try {
-            const result = await analyze(response, id);
+            const feedInstance = getFeedInstance(id);
+            const result = await analyze(response, feedInstance);
+
             resolve({
               profile: {
                 total_count,
@@ -92,9 +92,10 @@ export function getData() {
                 link,
                 url
               },
-              myFriends: result
+              myFriends: feedInstance.sortByScore()
             });
           } catch (e) {
+            console.error(e);
             reject(e);
           }
 

@@ -39,6 +39,7 @@ export function collectDataWithPaging({data, paging}, type) {
         }, type);
 
       } catch (e) {
+        console.error(e);
         throw new Error(e);
       }
 
