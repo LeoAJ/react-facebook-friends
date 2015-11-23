@@ -17,34 +17,22 @@ function analyze({ feed, tagged }, currentUserId) {
       // ignore tagged by friends
       if (taggedIds.indexOf(item.id) === -1) {
 
-        (async () => {
+        // count likes
+        item.likes && collectDataWithPaging(item.likes, LIKE);
 
-          try {
+        // count comments
+        item.comments && collectDataWithPaging(item.comments, COMMENT);
 
-            // count likes
-            item.likes && await collectDataWithPaging(item.likes, LIKE);
+        // count posts
+        feedInstance.add({
+          feedId: item.id,
+          user: item.from,
+          type: POST
+        });
 
-            // count comments
-            item.comments && await collectDataWithPaging(item.comments, COMMENT);
-
-            // count posts
-            feedInstance.add({
-              feedId: item.id,
-              user: item.from,
-              type: POST
-            });
-
-            callback();
-
-          } catch (e) {
-            callback(e);
-          }
-
-        })();
-
-      } else {
-        callback();
       }
+
+      callback();
 
     }, (err) => {
 
@@ -60,7 +48,7 @@ function analyze({ feed, tagged }, currentUserId) {
 
 }
 
-export async function getData() {
+export function getData() {
 
   return new Promise((resolve, reject) => {
 
@@ -93,21 +81,24 @@ export async function getData() {
           }
         } = response;
 
-        analyze(response, id)
-        .then((obj) => {
-          resolve({
-            profile: {
-              total_count,
-              name,
-              link,
-              url
-            },
-            myFriends: obj
-          });
-        })
-        .catch((e) => {
-          reject(e);
-        });
+        (async () => {
+
+          try {
+            const result = await analyze(response, id);
+            resolve({
+              profile: {
+                total_count,
+                name,
+                link,
+                url
+              },
+              myFriends: result
+            });
+          } catch (e) {
+            reject(e);
+          }
+
+        })();
 
       }
 

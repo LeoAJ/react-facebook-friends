@@ -21,32 +21,33 @@ function iterateData(data, type) {
 
 }
 
-export async function collectDataWithPaging({data, paging}, type) {
+export function collectDataWithPaging({data, paging}, type) {
 
-  try {
+  if (paging.next) {
 
-    if (paging.next) {
+    (async () => {
 
-      const pagingData = await getPagingData(paging.next);
+      try {
 
-      data = data.concat(pagingData.data);
+        const pagingData = await getPagingData(paging.next);
 
-      await collectDataWithPaging({
-        data,
-        paging: pagingData.paging
-      }, type);
+        data = data.concat(pagingData.data);
 
-    } else {
+        collectDataWithPaging({
+          data,
+          paging: pagingData.paging
+        }, type);
 
-      // terminate recursion
-      iterateData(data, type);
-    }
+      } catch (e) {
+        throw new Error(e);
+      }
 
-  } catch (e) {
+    })();
 
-    console.log(e);
-    console.log('ERR');
+  } else {
 
+    // terminate recursion
+    iterateData(data, type);
   }
 
 }
