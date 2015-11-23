@@ -4,8 +4,11 @@
   "description": "web app to rank your friendship on Facebook with React",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/ devServer.js",
+    "lint": "eslint src/ webpack/ devServer.js",
     "start": "npm run dev",
+    "build": "NODE_ENV=production webpack -p --config webpack/webpack.config.babel.js --progress --colors",
+    "clean": "rimraf dist/",
+    "deploy": "npm run clean && npm run build",
     "dev": "./node_modules/.bin/babel-node devServer.js"
   },
   "author": "Leo Hsieh <leo0924@gmail.com> (http://leoj.js.org)",
@@ -33,12 +36,12 @@
     "babel-preset-react": "^6.1.2",
     "eslint": "^1.7.3",
     "express": "^4.13.3",
+    "rimraf": "^2.4.4",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
   },
   "dependencies": {
-    "async": "^1.5.0",
     "radium": "^0.14.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
