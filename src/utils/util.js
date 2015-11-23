@@ -48,6 +48,8 @@ function analyze({ feed, tagged }, feedInstance) {
 
 export function getData() {
 
+  // &debug=all
+
   return new Promise((resolve, reject) => {
 
     FB.api(`/me?fields=name,cover,link,picture.width(200).height(200),
@@ -55,11 +57,10 @@ export function getData() {
           tagged,
           feed{likes{name,link,picture.width(100).height(100)},
           comments{from{name,link,picture.width(100).height(100)}},
-          from{name,link,picture.width(100).height(100)}}&debug=all`, (response) => {
-
-      // console.log(response);
+          from{name,link,picture.width(100).height(100)}}`, (response) => {
 
       if (!response || response.error) {
+        console.error(response.error);
         reject(response.error);
       } else {
 
@@ -82,6 +83,7 @@ export function getData() {
         (async () => {
 
           try {
+
             const feedInstance = getFeedInstance(id);
             const result = await analyze(response, feedInstance);
 
@@ -94,6 +96,7 @@ export function getData() {
               },
               myFriends: feedInstance.sortByScore()
             });
+
           } catch (e) {
             console.error(e);
             reject(e);
