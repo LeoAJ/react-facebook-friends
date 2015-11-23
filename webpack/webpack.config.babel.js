@@ -1,6 +1,13 @@
 import webpack from 'webpack';
 import webpackConfig from './_base';
 
+import path from 'path';
+
+webpackConfig.output = {
+  path: path.resolve(__dirname, '../', 'dist/'),
+  filename: 'bundle.js'
+};
+
 webpackConfig.plugins = [
   new webpack.optimize.UglifyJsPlugin({
     output: {
@@ -12,5 +19,5 @@ webpackConfig.plugins = [
     }
   })
 ];
-
+console.log(webpackConfig);
 export default webpackConfig;
