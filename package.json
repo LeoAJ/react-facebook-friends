@@ -4,7 +4,7 @@
   "description": "web app to rank your friendship on Facebook with React",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/ webpack/ devServer.js",
+    "lint": "eslint src/ webpack/ config/ devServer.js",
     "start": "npm run dev",
     "build": "NODE_ENV=production webpack -p --config webpack/webpack.config.babel.js --progress --colors",
     "clean": "rimraf dist/",
@@ -22,7 +22,7 @@
     "Facebook API"
   ],
   "devDependencies": {
-    "babel": "^6.0.15",
+    "babel": "^6.1.18",
     "babel-cli": "^6.1.2",
     "babel-core": "^6.1.2",
     "babel-eslint": "^4.1.5",
@@ -34,9 +34,14 @@
     "babel-polyfill": "^6.1.19",
     "babel-preset-es2015": "^6.1.2",
     "babel-preset-react": "^6.1.2",
+    "css-loader": "^0.23.0",
     "eslint": "^1.7.3",
     "express": "^4.13.3",
+    "file-loader": "^0.8.5",
+    "imports-loader": "^0.6.5",
     "rimraf": "^2.4.4",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"

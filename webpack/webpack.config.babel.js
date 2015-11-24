@@ -1,3 +1,5 @@
+/*global __dirname*/
+
 import webpack from 'webpack';
 import webpackConfig from './_base';
 
@@ -19,5 +21,5 @@ webpackConfig.plugins = [
     }
   })
 ];
-console.log(webpackConfig);
+
 export default webpackConfig;

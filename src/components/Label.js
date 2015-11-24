@@ -30,7 +30,6 @@ class Label extends Component {
       icon += ' fa-pencil';
       top = '100px';
     }
-    // console.log(text, top);
 
     const style = {
       wrapper: {

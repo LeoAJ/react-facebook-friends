@@ -81,7 +81,7 @@ class FriendItem extends Component {
         textAlign: 'center',
         color: facebookBlue,
         fontWeight: 'bold',
-        fontSize: '0.75em'
+        fontSize: '0.8em'
       },
       clear: {
         clear: 'both'
