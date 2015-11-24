@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    document.body.style.backgroundColor = 'rgb(233, 234, 237)';
+    document.body.style.backgroundColor = '#292929';
   }
 
   componentDidMount() {

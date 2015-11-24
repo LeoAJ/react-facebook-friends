@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
-import { facebookBlue } from '../utils/constants';
 
 class Login extends Component {
 
@@ -8,13 +7,13 @@ class Login extends Component {
 
     const style = {
       btn: {
-        backgroundColor: facebookBlue,
+        backgroundColor: '#55acee',
         margin: '0 auto',
         color: 'white',
         width: 'inherit'
       },
       title: {
-        color: facebookBlue
+        color: '#55acee'
       },
       main: {
         backgroundColor: 'white',

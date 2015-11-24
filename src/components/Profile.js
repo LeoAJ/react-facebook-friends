@@ -57,7 +57,7 @@ class Profile extends Component {
             <img src={url} alt="profile picture" style={style.imgStyle} />
           </a>
           <h1 style={style.nameStyle}>{name}</h1>
-          <h2 style={style.countStyle}>You have {total_count} friends</h2>
+          <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
         </div>
       </div>
     );
