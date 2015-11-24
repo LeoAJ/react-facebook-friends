@@ -1,4 +1,0 @@
-{
-  "presets": ["es2015", "react"],
-  "plugins": ["syntax-async-functions", "syntax-class-properties", "transform-regenerator", "transform-class-properties"]
-}
