@@ -9,6 +9,7 @@ import { getData } from '../utils/util';
 import Ribbon from './Ribbon';
 import Spinner from './Spinner';
 import Login from './Login';
+import emitter from '../utils/emitter';
 
 class App extends Component {
 
@@ -22,6 +23,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    emitter.on('search', (query) => {
+      this.setState({ query });
+    });
 
     window.fbAsyncInit = () => {
 
@@ -71,9 +76,9 @@ class App extends Component {
     FB.login(() => {}, { scope: ['user_posts', 'read_custom_friendlists'] });
   }
 
-  mainRender(state) {
+  mainRender() {
 
-    const { profile, myFriends, status } = state;
+    const { profile, myFriends, status, query } = this.state;
 
     if (status === 'err') {
       return <ErrMsg />
@@ -83,7 +88,7 @@ class App extends Component {
       return (
         <div className="pure-g">
           <Profile {...profile} />
-          <FriendList myFriends={myFriends} />
+          <FriendList myFriends={myFriends} query={query} />
         </div>
       );
     } else {
@@ -96,7 +101,7 @@ class App extends Component {
     return (
       <div>
         <Ribbon />
-        {this.mainRender(this.state)}
+        {this.mainRender()}
       </div>
     );
   }

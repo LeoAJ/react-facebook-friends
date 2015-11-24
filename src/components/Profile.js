@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
+import emitter from '../utils/emitter';
 import { facebookBlue } from '../utils/constants';
+import isEqual from 'lodash.isequal';
 
 class Profile extends Component {
 
@@ -13,6 +15,14 @@ class Profile extends Component {
     link: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     total_count: PropTypes.number.isRequired
+  }
+
+  changeHandler(e) {
+    emitter.emit('search', e.target.value);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isEqual(nextProps, this.props);
   }
 
   render() {
@@ -32,6 +42,7 @@ class Profile extends Component {
               textAlign: 'center',
               top: 'auto',
               margin: '3em auto',
+              padding: '1em',
               '@media (min-width: 48em)': {
                 margin: '50% 2em 0'
               }
@@ -47,6 +58,15 @@ class Profile extends Component {
               margin: '0',
               color: 'rgb(176, 202, 219)',
               fontWeight: '300'
+            },
+            searchInput: {
+              color: 'black',
+              marginTop: '5px',
+              boxSizing: 'border-box',
+              padding: '.5em',
+              width: '75%',
+              borderRadius: '3px',
+              border: '1px solid #aaa'
             }
           };
 
@@ -58,6 +78,7 @@ class Profile extends Component {
           </a>
           <h1 style={style.nameStyle}>{name}</h1>
           <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
+          <input placeholder="Search you friends" style={style.searchInput} onChange={this.changeHandler} />
         </div>
       </div>
     );

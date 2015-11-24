@@ -13,34 +13,41 @@ class FriendList extends Component {
     myFriends: PropTypes.array.isRequired
   }
 
-  renderFriends(myFriends) {
+  renderFriends(nodata) {
 
+    let { myFriends, query } = this.props;
     const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
-    let dom = [], i = 0;
 
-    for (; i < len; i++) {
-      dom.push(<FriendItem key={i} {...myFriends[i]} rank={i + 1} />);
-    }
+    const result = myFriends.slice(0, len).reduce((prev, curr, i) => {
 
-    return len > 0 ? dom : null;
+      if (curr.name.match(new RegExp(query, 'i'))) {
+        prev.push(<FriendItem key={i} {...curr} rank={i + 1} />);
+      }
 
+      return prev;
+
+    }, []);
+
+    return result.length > 0 ? result : (<div style={nodata}>No results for: "{query}"</div>);
   }
 
   render() {
 
-    const { myFriends } = this.props,
-            contentStyle = {
-              padding: '2em 1em 0',
-              '@media (min-width: 48em)': {
-                padding: '2em 3em 0',
-                marginLeft: '25%'
-              }
-            };
+    const contentStyle = {
+      padding: '2em 1em 0',
+      '@media (min-width: 48em)': {
+        padding: '2em 3em 0',
+        marginLeft: '25%'
+      },
+      nodata: {
+        color: 'white'
+      }
+    };
 
     return (
       <div className="pure-u-1 pure-u-md-3-4" style={contentStyle}>
         <div>
-          {this.renderFriends(myFriends)}
+          {this.renderFriends(contentStyle.nodata)}
         </div>
       </div>
     );
