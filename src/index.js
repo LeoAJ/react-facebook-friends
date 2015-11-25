@@ -8,6 +8,7 @@ import 'babel-polyfill';
 import '../vendor/css/gh-fork-ribbon.css';
 import '../vendor/css/font-awesome.css';
 import '../vendor/css/base.css';
+import '../vendor/css/buttons.css';
 import '../vendor/css/grids-responsive.css';
 
 ReactDOM.render(
