@@ -61,18 +61,13 @@ class Label extends Component {
         '@media (max-width: 48em)': {
           fontSize: '1em'
         }
-      },
-      icon: {
-        '@media (max-width: 48em)': {
-          // display: 'none'
-        }
       }
     };
 
     return (
       <div style={style.wrapper}>
         <div style={style.valueGroup}>
-          <i className={icon} style={style.icon}></i>
+          <i className={icon}></i>
           <span style={style.value}>{value}</span>
         </div>
         <div style={style.label}>{text}</div>

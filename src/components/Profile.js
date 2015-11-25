@@ -78,7 +78,7 @@ class Profile extends Component {
           </a>
           <h1 style={style.nameStyle}>{name}</h1>
           <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
-          <input placeholder="Search you friends" style={style.searchInput} onChange={this.changeHandler} />
+          <input placeholder="Search for your friends" style={style.searchInput} onChange={this.changeHandler} />
         </div>
       </div>
     );
