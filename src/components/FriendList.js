@@ -3,6 +3,17 @@ import FriendItem from './FriendItem';
 import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
+const contentStyle = {
+  padding: '2em 1em 0',
+  '@media (min-width: 48em)': {
+    padding: '2em 3em 0',
+    marginLeft: '25%'
+  },
+  nodata: {
+    color: 'white'
+  }
+};
+
 class FriendList extends Component {
 
   constructor(props) {
@@ -13,7 +24,7 @@ class FriendList extends Component {
     myFriends: PropTypes.array.isRequired
   }
 
-  renderFriends(nodata) {
+  renderFriends() {
 
     let { myFriends, query } = this.props;
     const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
@@ -33,21 +44,10 @@ class FriendList extends Component {
 
   render() {
 
-    const contentStyle = {
-      padding: '2em 1em 0',
-      '@media (min-width: 48em)': {
-        padding: '2em 3em 0',
-        marginLeft: '25%'
-      },
-      nodata: {
-        color: 'white'
-      }
-    };
-
     return (
       <div className="pure-u-1 pure-u-md-3-4" style={contentStyle}>
         <div>
-          {this.renderFriends(contentStyle.nodata)}
+          {this.renderFriends()}
         </div>
       </div>
     );

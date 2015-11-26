@@ -14,7 +14,7 @@ function iterateData(data, type) {
 
     feedInstance.add({
       user: type === LIKE ? item : item.from,
-      type: type
+      type
     });
 
   });
