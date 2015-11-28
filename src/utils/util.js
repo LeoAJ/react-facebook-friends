@@ -52,12 +52,20 @@ export function getData() {
 
   return new Promise((resolve, reject) => {
 
-    FB.api(`/me?fields=name,cover,link,picture.width(200).height(200),
-          friends,
-          tagged,
-          feed{likes{name,link,picture.width(100).height(100)},
-          comments{from{name,link,picture.width(100).height(100)}},
-          from{name,link,picture.width(100).height(100)}}`, (response) => {
+    const sm = 100,
+          md = 200,
+          fbName = `name`,
+          fbLink = `link`,
+          fbSmPicture = `picture.width(${sm}).height(${sm})`,
+          fbMdPicture = `picture.width(${md}).height(${md})`,
+          fbFromUser = `from{${fbName},${fbLink},${fbSmPicture}}`;
+
+    FB.api(`/me?fields=${fbName},cover,${fbLink},${fbMdPicture},
+            friends,
+            tagged,
+            feed{likes{${fbName},${fbLink},${fbSmPicture}},
+            comments{${fbFromUser}},
+            ${fbFromUser}}`, (response) => {
 
       if (!response || response.error) {
         console.error(response.error);

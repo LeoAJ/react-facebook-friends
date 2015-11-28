@@ -3,13 +3,16 @@ import FriendItem from './FriendItem';
 import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
-const contentStyle = {
-  padding: '2em 1em 0',
-  '@media (min-width: 48em)': {
-    padding: '2em 3em 0',
-    marginLeft: '25%'
+const style = {
+  contentStyle: {
+    padding: '2em 1em 0',
+    '@media (min-width: 48em)': {
+      padding: '2em 3em 0',
+      marginLeft: '25%'
+    }
   },
-  nodata: {
+  noData: {
+    textAlign: 'center',
     color: 'white'
   }
 };
@@ -39,13 +42,13 @@ class FriendList extends Component {
 
     }, []);
 
-    return result.length > 0 ? result : (<div style={nodata}>No results for: "{query}"</div>);
+    return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
   }
 
   render() {
 
     return (
-      <div className="pure-u-1 pure-u-md-3-4" style={contentStyle}>
+      <div className="pure-u-1 pure-u-md-3-4" style={style.contentStyle}>
         <div>
           {this.renderFriends()}
         </div>
