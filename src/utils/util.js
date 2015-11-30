@@ -1,6 +1,6 @@
 /*global FB*/
 
-import getFeedInstance from './Feed';
+import getFeedInstance from './singleton';
 import { POST, LIKE, COMMENT } from './constants';
 import { collectDataWithPaging } from './paging';
 
