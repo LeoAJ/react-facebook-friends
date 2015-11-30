@@ -5,10 +5,12 @@ import { MAX_OUTPUT } from '../utils/constants';
 
 const style = {
   contentStyle: {
-    padding: '2em 1em 0',
-    '@media (min-width: 48em)': {
-      padding: '2em 3em 0',
-      marginLeft: '25%'
+    padding: '2em 3em 0',
+    marginLeft: '25%',
+    '@media (max-width: 48em)': {
+      maxWidth: '350px',
+      margin: 'auto',
+      padding: '2em 1em 0'
     }
   },
   noData: {
@@ -48,7 +50,7 @@ class FriendList extends Component {
   render() {
 
     return (
-      <div className="pure-u-1 pure-u-md-3-4" style={style.contentStyle}>
+      <div style={style.contentStyle}>
         <div>
           {this.renderFriends()}
         </div>

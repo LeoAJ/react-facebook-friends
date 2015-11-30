@@ -44,7 +44,7 @@ class Profile extends Component {
               margin: '3em auto',
               padding: '1em',
               '@media (min-width: 48em)': {
-                margin: '50% 2em 0'
+                margin: '50% 1em 0'
               }
             },
             imgStyle: {
