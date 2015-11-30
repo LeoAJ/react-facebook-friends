@@ -27,8 +27,8 @@ class Profile extends Component {
 
   render() {
 
-    const { name, link, url, total_count } = this.props,
-          style = {
+    const { name, link, url, total_count } = this.props;
+    const style = {
             profileStyle: {
               background: facebookBlue,
               color: '#fff',

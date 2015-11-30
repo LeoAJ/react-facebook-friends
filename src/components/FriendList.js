@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import FriendItem from './FriendItem';
 import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
@@ -19,44 +19,29 @@ const style = {
   }
 };
 
-class FriendList extends Component {
+const renderFriends = ({ myFriends, query }) => {
 
-  constructor(props) {
-    super(props);
-  }
+  const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
+  const result = myFriends.slice(0, len).reduce((prev, curr, i) => {
 
-  static propTypes = {
-    myFriends: PropTypes.array.isRequired
-  }
+    if (curr.name.match(new RegExp(query, 'i'))) {
+      prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
+    }
 
-  renderFriends() {
+    return prev;
 
-    let { myFriends, query } = this.props;
-    const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
+  }, []);
 
-    const result = myFriends.slice(0, len).reduce((prev, curr, i) => {
+  return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
 
-      if (curr.name.match(new RegExp(query, 'i'))) {
-        prev.push(<FriendItem key={i} {...curr} rank={i + 1} />);
-      }
+};
 
-      return prev;
-
-    }, []);
-
-    return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
-  }
-
-  render() {
-
-    return (
-      <div style={style.contentStyle}>
-        <div>
-          {this.renderFriends()}
-        </div>
-      </div>
-    );
-  }
-}
+const FriendList = (props) => (
+  <div style={style.contentStyle}>
+    <div>
+      {renderFriends(props)}
+    </div>
+  </div>
+);
 
 export default Radium(FriendList);

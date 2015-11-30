@@ -1,29 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Radium from 'radium';
 
-class Ribbon extends Component {
-
-  constructor(props) {
-    super(props);
+const style = {
+  '@media (max-width: 48em)': {
+    display: 'none'
   }
+};
 
-  render() {
-
-    const style = {
-      '@media (max-width: 48em)': {
-        display: 'none'
-      }
-    };
-
-    return (
-      <div className="github-fork-ribbon-wrapper left fixed" style={style}>
-        <div className="github-fork-ribbon">
-          <a target="_blank" href="https://github.com/LeoAJ">Fork me on Github</a>
-        </div>
-      </div>
-    );
-  }
-
-}
+const Ribbon = () => (
+  <div className="github-fork-ribbon-wrapper left fixed" style={style}>
+    <div className="github-fork-ribbon">
+      <a target="_blank" href="https://github.com/LeoAJ">Fork me on Github</a>
+    </div>
+  </div>
+);
 
 export default Radium(Ribbon);

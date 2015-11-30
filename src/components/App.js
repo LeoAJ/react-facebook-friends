@@ -79,9 +79,9 @@ class App extends Component {
   mainRender() {
 
     const { profile, myFriends, status, query } = this.state;
-
+    
     if (status === 'err') {
-      return <ErrMsg />
+      return (<ErrMsg />);
     } else if (status === 'unknown') {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
@@ -92,7 +92,7 @@ class App extends Component {
         </div>
       );
     } else {
-      return <Spinner />
+      return (<Spinner />);
     }
   }
 
