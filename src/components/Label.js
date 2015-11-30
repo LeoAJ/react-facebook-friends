@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
+import { POST, LIKE, COMMENT } from '../utils/constants';
 
 class Label extends Component {
 
@@ -17,15 +18,15 @@ class Label extends Component {
     const { type, value } = this.props;
     let text, top, icon = 'fa';
 
-    if (type === 'like') {
+    if (type === LIKE) {
       text = 'Likes';
       icon += ' fa-thumbs-o-up';
       top = '26px';
-    } else if (type === 'comment') {
+    } else if (type === COMMENT) {
       text = 'Comments';
       icon += ' fa-comments';
       top = '63px';
-    } else if (type === 'post') {
+    } else if (type === POST) {
       text = 'Posts';
       icon += ' fa-pencil';
       top = '100px';

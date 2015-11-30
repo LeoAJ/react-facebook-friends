@@ -1,6 +1,7 @@
 import React from 'react';
 import Label from './Label';
 import Radium from 'radium';
+import { POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
 import { facebookBlue } from '../utils/constants';
 
 const colors = {
@@ -88,9 +89,9 @@ const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
         <img src={url} alt={name} style={style.img} />
         <div style={style.name}>{name}</div>
       </div>
-      <Label type={'like'} value={LIKE} />
-      <Label type={'comment'} value={COMMENT} />
-      <Label type={'post'} value={POST} />
+      <Label type={lType} value={LIKE} />
+      <Label type={cType} value={COMMENT} />
+      <Label type={pType} value={POST} />
       <div style={style.clear}></div>
     </a>
   </div>
