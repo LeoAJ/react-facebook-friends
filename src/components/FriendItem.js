@@ -75,23 +75,38 @@ const style = {
   }
 };
 
-const setColor = (rank) => {
-  return Object.assign({}, style.rank, {
-    backgroundColor: colors[(rank - 1) % 10]
-  });
+const labelMap = {
+  c: {
+    text: 'Comments',
+    icon: 'fa fa-comments',
+    top: '63px'
+  },
+  l: {
+    text: 'Likes',
+    icon: 'fa fa-thumbs-o-up',
+    top: '26px'
+  },
+  p: {
+    text: 'Posts',
+    icon: 'fa fa-pencil',
+    top: '100px'
+  }
 };
 
 const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
   <div style={style.item}>
     <a target="_blank" href={link} style={style.anchor}>
-      <div style={setColor(rank)}>{rank}</div>
+      <div style={{
+        ...style.rank,
+        backgroundColor: colors[(rank - 1) % 10]
+      }}>{rank}</div>
       <div style={style.imgWrapper}>
         <img src={url} alt={name} style={style.img} />
         <div style={style.name}>{name}</div>
       </div>
-      <Label type={lType} value={LIKE} />
-      <Label type={cType} value={COMMENT} />
-      <Label type={pType} value={POST} />
+      <Label {...labelMap.l} value={LIKE} />
+      <Label {...labelMap.c} value={COMMENT} />
+      <Label {...labelMap.p} value={POST} />
       <div style={style.clear}></div>
     </a>
   </div>

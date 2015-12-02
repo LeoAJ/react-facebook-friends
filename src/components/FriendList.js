@@ -21,18 +21,26 @@ const style = {
 
 const renderFriends = ({ myFriends, query }) => {
 
-  const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
-  const result = myFriends.slice(0, len).reduce((prev, curr, i) => {
+  if (query) {
+    // TODO...
+  } else {
+    return myFriends.map((friend, i) => {
+      return (<FriendItem key={i} rank={i + 1} {...friend} />);
+    });
+  }
 
-    if (curr.name.match(new RegExp(query, 'i'))) {
-      prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
-    }
-
-    return prev;
-
-  }, []);
-
-  return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
+  // const len = myFriends.length > MAX_OUTPUT ? MAX_OUTPUT : myFriends.length;
+  // const result = myFriends.slice(0, len).reduce((prev, curr, i) => {
+  //
+  //   if (curr.name.match(new RegExp(query, 'i'))) {
+  //     prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
+  //   }
+  //
+  //   return prev;
+  //
+  // }, []);
+  //
+  // return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
 
 };
 

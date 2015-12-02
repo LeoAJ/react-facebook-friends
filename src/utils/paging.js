@@ -33,7 +33,7 @@ export function collectDataWithPaging({data, paging}, type) {
 
         data = data.concat(pagingData.data);
 
-        collectDataWithPaging({
+        await collectDataWithPaging({
           data,
           paging: pagingData.paging
         }, type);

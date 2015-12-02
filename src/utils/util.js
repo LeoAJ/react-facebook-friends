@@ -1,8 +1,8 @@
 /*global FB*/
 
 import getFeedInstance from './singleton';
-import { POST, LIKE, COMMENT } from './constants';
 import { collectDataWithPaging } from './paging';
+import { POST, LIKE, COMMENT } from './constants';
 
 function analyze({ feed, tagged }, feedInstance) {
 
@@ -14,18 +14,22 @@ function analyze({ feed, tagged }, feedInstance) {
       // ignore tagged by friends
       if (taggedIds.indexOf(item.id) === -1) {
 
-        try {
+        (async () => {
 
-          // count likes
-          item.likes && collectDataWithPaging(item.likes, LIKE);
+          try {
 
-          // count comments
-          item.comments && collectDataWithPaging(item.comments, COMMENT);
+            // count likes
+            item.likes && await collectDataWithPaging(item.likes, LIKE);
 
-        } catch (e) {
-          console.error(e);
-          reject(e);
-        }
+            // count comments
+            item.comments && await collectDataWithPaging(item.comments, COMMENT);
+
+          } catch (e) {
+            console.error(e);
+            reject(e);
+          }
+
+        })()
 
         // count posts
         feedInstance.add({
@@ -93,7 +97,7 @@ export function getData() {
           try {
 
             const feedInstance = getFeedInstance(id);
-            const result = await analyze(response, feedInstance);
+            await analyze(response, feedInstance);
 
             resolve({
               profile: {

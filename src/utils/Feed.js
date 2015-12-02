@@ -1,5 +1,5 @@
 
-import { LIKE_POINT, COMMENT_POINT, POST_POINT, POST, LIKE, COMMENT } from './constants';
+import { LIKE_POINT, COMMENT_POINT, POST_POINT, POST, LIKE, COMMENT, MAX_OUTPUT } from './constants';
 
 class Feed {
 
@@ -57,10 +57,9 @@ class Feed {
 
   }
 
+  // sort and only output first 25 items
   sortByScore() {
-    return this.info.sort((a, b) => {
-      return b.score - a.score;
-    });
+    return this.info.sort((a, b) => b.score - a.score).slice(0, MAX_OUTPUT);
   }
 
   set userId(currentUserId) {

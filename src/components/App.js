@@ -22,6 +22,10 @@ class App extends Component {
     document.body.style.backgroundColor = '#292929';
   }
 
+  componentWillUnmount() {
+    emitter.removeListener('search');
+  }
+
   componentDidMount() {
 
     emitter.on('search', (query) => {
@@ -79,7 +83,7 @@ class App extends Component {
   mainRender() {
 
     const { profile, myFriends, status, query } = this.state;
-    
+
     if (status === 'err') {
       return (<ErrMsg />);
     } else if (status === 'unknown') {

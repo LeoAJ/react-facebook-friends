@@ -48,7 +48,7 @@ class Spinner extends Component {
         right: '0',
         'zIndex': '500'
       }
-    }
+    };
 
     return (<div ref="spin" style={style.blur}></div>);
   }
