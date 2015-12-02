@@ -4,19 +4,20 @@ import getFeedInstance from './singleton';
 import { collectDataWithPaging } from './paging';
 import { POST, LIKE, COMMENT } from './constants';
 
+// return list of promises
 function analyze({ feed, tagged }, feedInstance) {
 
   const taggedIds = tagged.data.map(tag => tag.id);
-  const promises = feed.data.map((item) => {
+
+  return feed.data.map((item) => {
 
     return new Promise((resolve, reject) => {
 
-      // ignore tagged by friends
-      if (taggedIds.indexOf(item.id) === -1) {
+      (async () => {
 
-        (async () => {
+        try {
 
-          try {
+          if (taggedIds.indexOf(item.id) === -1) {
 
             // count likes
             item.likes && await collectDataWithPaging(item.likes, LIKE);
@@ -24,29 +25,29 @@ function analyze({ feed, tagged }, feedInstance) {
             // count comments
             item.comments && await collectDataWithPaging(item.comments, COMMENT);
 
-          } catch (e) {
-            console.error(e);
-            reject(e);
+            // count posts
+            feedInstance.add({
+              feedId: item.id,
+              user: item.from,
+              type: POST
+            });
+
           }
 
-        })()
+          resolve();
 
-        // count posts
-        feedInstance.add({
-          feedId: item.id,
-          user: item.from,
-          type: POST
-        });
+        } catch (e) {
 
-      }
+          console.error(e);
+          reject(e);
 
-      resolve();
+        }
+
+      })()
 
     });
 
   });
-
-  return Promise.all(promises);
 
 }
 
@@ -97,7 +98,7 @@ export function getData() {
           try {
 
             const feedInstance = getFeedInstance(id);
-            await analyze(response, feedInstance);
+            await Promise.all(analyze(response, feedInstance));
 
             resolve({
               profile: {

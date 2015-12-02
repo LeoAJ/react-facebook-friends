@@ -1,6 +1,5 @@
 import reqwest from 'reqwest';
 import getFeedInstance from './Feed';
-import { LIKE } from './constants';
 
 const feedInstance = getFeedInstance();
 
@@ -13,7 +12,7 @@ function iterateData(data, type) {
   data.forEach((item) => {
 
     feedInstance.add({
-      user: type === LIKE ? item : item.from,
+      user: item.from || item,
       type
     });
 
@@ -21,34 +20,31 @@ function iterateData(data, type) {
 
 }
 
-export function collectDataWithPaging({data, paging}, type) {
+export async function collectDataWithPaging({data, paging}, type) {
 
-  if (paging.next) {
+  try {
 
-    (async () => {
+    if (paging.next) {
 
-      try {
+      const pagingData = await getPagingData(paging.next);
 
-        const pagingData = await getPagingData(paging.next);
+      data = data.concat(pagingData.data);
 
-        data = data.concat(pagingData.data);
+      await collectDataWithPaging({
+        data,
+        paging: pagingData.paging
+      }, type);
 
-        await collectDataWithPaging({
-          data,
-          paging: pagingData.paging
-        }, type);
+    } else {
 
-      } catch (e) {
-        console.error(e);
-        throw new Error(e);
-      }
+      iterateData(data, type);
+      return;
 
-    })();
+    }
 
-  } else {
-
-    // terminate recursion
-    iterateData(data, type);
+  } catch (e) {
+    console.error(e);
+    throw e;
   }
 
 }
