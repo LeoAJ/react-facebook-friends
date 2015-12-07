@@ -32,7 +32,7 @@ const style = {
 
 const ErrMsg = () => (
   <div style={style.wrapper}>
-    <div style={style.title}>Error!!</div>
+    <h6 style={style.title}>Error!!</h6>
     <p style={style.msg}>We are sorry but something went wrong, please try again later.</p>
   </div>
 );
