@@ -13,7 +13,7 @@ describe('(Components) ErrMsg', () => {
 
   });
 
-  it('Should render as a <div>', () => {
+  it('Should render a parent <div>', () => {
     expect(_component.type).to.equal('div');
   });
 

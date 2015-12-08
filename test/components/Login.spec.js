@@ -18,7 +18,7 @@ describe('(Components) Login', () => {
 
   });
 
-  it('Should render as a <div>', () => {
+  it('Should render a parent <div>', () => {
     expect(_component.type).to.equal('div');
   });
 

@@ -13,11 +13,11 @@ describe('(Components) Ribbon', () => {
 
   });
 
-  it('Should render as a <div>', () => {
+  it('Should render a parent <div>', () => {
     expect(_component.type).to.equal('div');
   });
 
-  it('Should render a <a> and show "Fork me on Github"', () => {
+  it('Should render an anchor tag and show "Fork me on Github"', () => {
     const anchor = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'a');
     expect(anchor).to.exist;
     expect(anchor.textContent).to.match(/Fork me on Github/);
