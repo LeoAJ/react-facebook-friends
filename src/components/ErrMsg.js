@@ -23,7 +23,8 @@ const style = {
   },
   title: {
     color: '#912D2B',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginTop: '5px'
   },
   msg: {
     color: 'rgb(159, 58, 56)'
@@ -32,7 +33,7 @@ const style = {
 
 const ErrMsg = () => (
   <div style={style.wrapper}>
-    <h6 style={style.title}>Error!!</h6>
+    <div style={style.title}>Error!!</div>
     <p style={style.msg}>We are sorry but something went wrong, please try again later.</p>
   </div>
 );

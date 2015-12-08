@@ -77,7 +77,7 @@ class App extends Component {
   }
 
   _click() {
-    FB.login(() => {}, { scope: ['user_posts', 'read_custom_friendlists'] });
+    FB.login(() => {}, { scope: ['user_posts', 'user_friends'] });
   }
 
   mainRender() {

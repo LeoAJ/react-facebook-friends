@@ -21,14 +21,6 @@ const style = {
 
 const renderFriends = ({ myFriends, query }) => {
 
-  // if (query) {
-  //   // TODO...
-  // } else {
-  //   return myFriends.map((friend, i) => {
-  //     return (<FriendItem key={i} rank={i + 1} {...friend} />);
-  //   });
-  // }
-
   const result = myFriends.reduce((prev, curr, i) => {
 
     if (curr.name.match(new RegExp(query, 'i'))) {

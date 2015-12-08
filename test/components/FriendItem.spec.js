@@ -1,5 +1,4 @@
 import TestUtils from 'react-addons-test-utils';
-import Label from '../../src/components/Label';
 import FriendItem from '../../src/components/FriendItem';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 

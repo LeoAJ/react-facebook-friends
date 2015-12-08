@@ -76,7 +76,7 @@ export function getData() {
         console.error(response.error);
         reject(response.error);
       } else {
-
+        
         const {
           id,
           name,
