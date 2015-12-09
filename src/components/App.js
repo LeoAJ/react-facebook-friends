@@ -37,7 +37,7 @@ class App extends Component {
       FB.init(config);
 
       FB.getLoginStatus((response) => {
-
+        
         if (response.status === 'unknown') {
           // show log in
           this.setState({ status: response.status });

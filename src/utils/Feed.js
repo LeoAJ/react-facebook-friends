@@ -69,22 +69,22 @@ class Feed {
 }
 
 // singleton
-function singleton() {
-  let instance;
-  return {
-    get(currentUserId) {
+// function singleton() {
+//   let instance;
+//   return {
+//     get(currentUserId) {
+//
+//       if (!instance) {
+//         instance = new Feed(currentUserId);
+//       }
+//
+//       if (!instance.currentUserId) {
+//         instance.userId = currentUserId;
+//       }
+//
+//       return instance;
+//     }
+//   };
+// };
 
-      if (!instance) {
-        instance = new Feed(currentUserId);
-      }
-
-      if (!instance.currentUserId) {
-        instance.userId = currentUserId;
-      }
-
-      return instance;
-    }
-  };
-};
-
-export default singleton().get;
+export default Feed;

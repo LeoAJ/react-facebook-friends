@@ -1,5 +1,5 @@
 import reqwest from 'reqwest';
-import getFeedInstance from './Feed';
+import getFeedInstance from '../utils/singleton';
 
 const feedInstance = getFeedInstance();
 
