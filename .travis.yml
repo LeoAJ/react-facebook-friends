@@ -8,3 +8,6 @@ install:
 
 script:
   - npm test
+
+env:
+  - NODE_ENV=production

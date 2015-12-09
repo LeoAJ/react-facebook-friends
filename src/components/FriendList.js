@@ -30,7 +30,7 @@ const renderFriends = ({ myFriends, query }) => {
     return prev;
 
   }, []);
-
+  
   return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
 
 };
