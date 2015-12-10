@@ -20,7 +20,7 @@ function iterateData(data, type) {
 
 }
 
-export async function collectDataWithPaging({data, paging}, type) {
+export async function collectDataWithPaging({ data, paging }, type) {
 
   try {
 

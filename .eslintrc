@@ -7,6 +7,9 @@ ecmaFeatures:
 
 parser: "babel-eslint"
 
+plugins:
+  - babel
+
 rules:
   no-undef: 2
   no-undef-init: 1
@@ -40,3 +43,8 @@ rules:
   global-strict: 0
   space-infix-ops: 1
   strict: 0
+  babel/generator-star-spacing: 1
+  babel/object-curly-spacing: [2, "always"]
+  babel/object-shorthand: 1
+  babel/arrow-parens: 0
+  babel/no-await-in-loop: 1

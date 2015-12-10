@@ -27,7 +27,7 @@ const Label = ({ text, icon, top, value }) => (
     display: 'inline-block',
     '@media (max-width: 48em)': {
       position: 'absolute',
-      top: top,
+      top,
       margin: value < 10 ? '0 25px' : '0 20px',
       backgroundColor: 'rgb(58, 87, 149)',
       color: 'white',
