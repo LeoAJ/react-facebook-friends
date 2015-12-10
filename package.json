@@ -4,7 +4,7 @@
   "description": "web app to rank your friendship on Facebook with React",
   "scripts": {
     "lint": "eslint src/ webpack/ config/ test/ server.js",
-    "test": "./node_modules/karma/bin/karma start",
+    "test": "NODE_ENV=test ./node_modules/karma/bin/karma start",
     "test:dev": "npm run test -- --watch",
     "start": "npm run dev",
     "build": "NODE_ENV=production webpack -p --config webpack/webpack.config.babel.js --progress --colors",
