@@ -5,6 +5,8 @@ import webpackConfig from './_base';
 
 import path from 'path';
 
+webpackConfig.devtool = 'source-map';
+
 webpackConfig.output = {
   path: path.resolve(__dirname, '../', 'dist/'),
   filename: 'bundle.js'

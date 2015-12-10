@@ -3,7 +3,6 @@
 import path from 'path';
 
 const webpackConfig = {
-  devtool: 'source-map',
   target: 'web',
   entry: [path.resolve(__dirname, '../', 'src/')],
   output: {
