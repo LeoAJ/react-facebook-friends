@@ -53,8 +53,6 @@ function analyze({ feed, tagged }, feedInstance) {
 
 export function getData() {
 
-  // &debug=all
-
   return new Promise((resolve, reject) => {
 
     const sm = 100,
@@ -76,7 +74,7 @@ export function getData() {
         console.error(response.error);
         reject(response.error);
       } else {
-        
+
         const {
           id,
           name,

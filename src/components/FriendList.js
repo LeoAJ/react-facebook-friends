@@ -9,7 +9,8 @@ const style = {
     marginLeft: '25%',
     '@media (max-width: 48em)': {
       maxWidth: '350px',
-      margin: 'auto',
+      marginLeft: 'auto',
+      marginRight: 'auto',
       padding: '2em 1em 0'
     }
   },
@@ -30,7 +31,7 @@ const renderFriends = ({ myFriends, query }) => {
     return prev;
 
   }, []);
-  
+
   return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
 
 };
