@@ -7,4 +7,4 @@
 
 web app to rank your friendship on Facebook with React
 
-**still under development**
+**still working on it**
