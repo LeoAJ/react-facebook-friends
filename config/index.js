@@ -1,5 +1,5 @@
 export default {
-  appId: '474168566102860',
+  appId: '483666801819703',
   cookie: true,
   xfbml: false,
   version: 'v2.5'
