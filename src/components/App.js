@@ -28,22 +28,14 @@ class App extends Component {
 
   componentDidMount() {
 
-    emitter.on('search', (query) => {
-      this.setState({ query });
-    });
+    emitter.on('search', query => this.setState({ query }));
 
     window.fbAsyncInit = () => {
 
       FB.init(config);
 
-      FB.getLoginStatus((response) => {
-
-        if (response.status === 'unknown') {
-          // show log in
-          this.setState({ status: response.status });
-        }
-
-      });
+      // show login
+      FB.getLoginStatus(response => response.status === 'unknown' && this.setState({ status: response.status }));
 
       FB.Event.subscribe('auth.statusChange', (response) => {
 
