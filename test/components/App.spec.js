@@ -7,7 +7,7 @@ import Profile from '../../src/components/Profile';
 import FriendList from '../../src/components/FriendList';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
-describe.only('(Components) App', () => {
+describe('(Components) App', () => {
 
   let _component, _rendered;
 
