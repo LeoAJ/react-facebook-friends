@@ -65,6 +65,14 @@ const style = {
   },
   value: {
     fontSize: '6em'
+  },
+  labelWrapper: {
+    display: 'flex',
+    '@media (max-width: 590px)': {
+      flexWrap: 'wrap',
+      minHeight: 'inherit',
+      alignItems: 'center'
+    }
   }
 };
 
@@ -96,9 +104,11 @@ const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
         <img src={url} alt={name} style={style.img} />
         <div style={style.name}>{name}</div>
       </div>
-      <Label {...labelMap.l} value={LIKE} />
-      <Label {...labelMap.c} value={COMMENT} />
-      <Label {...labelMap.p} value={POST} />
+      <div style={style.labelWrapper}>
+        <Label {...labelMap.l} value={LIKE} />
+        <Label {...labelMap.c} value={COMMENT} />
+        <Label {...labelMap.p} value={POST} />
+      </div>
     </a>
 );
 

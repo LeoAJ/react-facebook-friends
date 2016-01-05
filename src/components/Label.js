@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { facebookBlue } from '../utils/constants';
 import Radium from 'radium';
 
 const style = {
@@ -20,7 +21,11 @@ const style = {
   valueGroup: {
     fontSize: '4em',
     '@media (max-width: 590px)': {
-      fontSize: '1em'
+      fontSize: '1em',
+      color: 'white',
+      backgroundColor: facebookBlue,
+      padding: '3px',
+      borderRadius: '3px'
     }
   }
 };
