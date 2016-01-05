@@ -36,9 +36,9 @@ class App extends Component {
       FB.init(config);
 
       // show login
-      FB.getLoginStatus(response => response.status === 'unknown' && this.setState({ status: response.status }));
+      FB.getLoginStatus(response => response.status !== 'connected' && this.setState({ status: response.status }));
 
-      FB.Event.subscribe('auth.statusChange', (response) => {
+      FB.Event.subscribe('auth.authResponseChange', (response) => {
 
         // start spinner
         this.setState({ status: 'loading' });
@@ -85,7 +85,7 @@ class App extends Component {
 
     if (status === 'err') {
       return (<ErrMsg />);
-    } else if (status === 'unknown') {
+    } else if (status === 'unknown' || status === 'not_authorized') {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
       return (

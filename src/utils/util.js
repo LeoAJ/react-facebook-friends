@@ -95,7 +95,7 @@ export function getData() {
 
           try {
 
-            const feedInstance = getFeedInstance(id);;
+            const feedInstance = getFeedInstance(id);
             // corner case! check if user has friends
             total_count && await Promise.all(analyze(response, feedInstance));
 
