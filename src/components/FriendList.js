@@ -27,6 +27,10 @@ const style = {
   }
 };
 
+const emptyResult = (hasFriends, query) => {
+  return <div style={style.noDataWrapper}>{hasFriends ? `No results for: "${query}"` : `No friends to show`}</div>;
+};
+
 const renderFriends = ({ myFriends, query }) => {
 
   const result = myFriends.reduce((prev, curr, i) => {
@@ -39,7 +43,7 @@ const renderFriends = ({ myFriends, query }) => {
 
   }, []);
 
-  return result.length > 0 ? result : (<div style={style.noDataWrapper}>No results for: "{query}"</div>);
+  return result.length > 0 ? result : emptyResult(!!myFriends.length, query);
 
 };
 

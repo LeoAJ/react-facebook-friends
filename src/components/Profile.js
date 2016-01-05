@@ -28,6 +28,9 @@ class Profile extends Component {
   render() {
 
     const { name, link, url, total_count } = this.props;
+    const renderSearchBox = () => {
+      return total_count === 0 ? null : <input placeholder="Search friends" style={style.searchInput} onChange={this.changeHandler} autoFocus />;
+    };
     const style = {
             profileStyle: {
               position: 'fixed',
@@ -44,7 +47,6 @@ class Profile extends Component {
             flexContainer: {
               flex: '1 1 0%',
               width: '300px',
-              // border: '3px solid green',
               '@media (max-width: 1050px)': {
                 flex: '1 1 100%',
                 width: 'auto'
@@ -91,7 +93,7 @@ class Profile extends Component {
             </a>
             <h1 style={style.nameStyle}>{name}</h1>
             <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
-            <input placeholder="Search friends" style={style.searchInput} onChange={this.changeHandler} autoFocus />
+            {renderSearchBox()}
           </div>
         </div>
       </div>
