@@ -4,39 +4,40 @@ import Radium from 'radium';
 const style = {
   btn: {
     backgroundColor: '#55acee',
-    margin: '0 auto',
-    color: 'white',
-    width: 'inherit'
+    color: 'white'
   },
   title: {
-    color: '#55acee'
+    textAlign: 'center',
+    color: '#55acee',
+    '@media (max-width: 600px)': {
+      fontSize: '1em'
+    }
   },
   main: {
+    textAlign: 'center',
     backgroundColor: 'white',
-    padding: '25px 5px',
-    borderRadius: '3px'
+    padding: '15px 5px',
+    borderRadius: '3px',
+    '@media (max-width: 600px)': {
+      fontSize: '0.9em'
+    }
   },
   wrapper: {
-    textAlign: 'center',
-    position: 'absolute',
-    width: '40%',
-    height: '20%',
-    margin: 'auto',
-    top: '20%',
-    right: '30%',
-    '@media (max-width: 48em)': {
-      left: '0',
-      width: '100%'
-    }
+    display: 'flex',
+    minHeight: '60vh',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 };
 
 const Login = ({ FB_login }) => (
   <div style={style.wrapper}>
-    <h2 style={style.title}>Checkout who are you best friends on Facebook</h2>
-    <div style={style.main}>
-      <h4>Facebook required your permission to do further action</h4>
-      <button className="pure-button" style={style.btn} onClick={FB_login}>Agree</button>
+    <div>
+      <h2 style={style.title}>Checkout who are you best friends on Facebook</h2>
+      <div style={style.main}>
+        <h4>Facebook required your permission to do further action</h4>
+        <button className="pure-button" style={style.btn} onClick={FB_login}>Agree</button>
+      </div>
     </div>
   </div>
 );
