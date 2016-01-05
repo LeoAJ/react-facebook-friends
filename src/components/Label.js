@@ -2,42 +2,34 @@ import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 
 const style = {
+  wrapper: {
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    display: 'flex',
+    padding: '0',
+    '@media (max-width: 590px)': {
+      flex: '1 1 100%'
+    }
+  },
   label: {
     fontSize: '1.5em',
-    textAlign: 'center',
-    '@media (max-width: 48em)': {
-      fontSize: '0.75em',
+    '@media (max-width: 590px)': {
       display: 'none'
     }
   },
-  value: {
-    margin: '3px',
-  },
   valueGroup: {
     fontSize: '4em',
-    '@media (max-width: 48em)': {
+    '@media (max-width: 590px)': {
       fontSize: '1em'
     }
   }
 };
 
 const Label = ({ text, icon, top, value }) => (
-  <div style={{
-    margin: value < 10 ? '0 25px' : '0 10px',
-    display: 'inline-block',
-    '@media (max-width: 48em)': {
-      position: 'absolute',
-      top,
-      margin: value < 10 ? '0 25px' : '0 20px',
-      backgroundColor: 'rgb(58, 87, 149)',
-      color: 'white',
-      padding: '5px',
-      borderRadius: '3px'
-    }
-  }}>
+  <div style={style.wrapper}>
     <div style={style.valueGroup}>
       <i className={icon}></i>
-      <span style={style.value}>{value}</span>
+      <span>{value}</span>
     </div>
     <div style={style.label}>{text}</div>
   </div>

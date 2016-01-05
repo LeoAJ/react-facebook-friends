@@ -10,6 +10,7 @@ import Ribbon from './Ribbon';
 import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
+import Radium from 'radium';
 
 class App extends Component {
 
@@ -75,6 +76,12 @@ class App extends Component {
   mainRender() {
 
     const { profile, myFriends, status, query } = this.state;
+    const style = {
+      display: 'flex',
+      '@media (max-width: 1050px)': {
+        flexWrap: 'wrap'
+      }
+    };
 
     if (status === 'err') {
       return (<ErrMsg />);
@@ -82,7 +89,7 @@ class App extends Component {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
       return (
-        <div className="pure-g">
+        <div style={style}>
           <Profile {...profile} />
           <FriendList myFriends={myFriends} query={query} />
         </div>
@@ -104,4 +111,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default Radium(App);

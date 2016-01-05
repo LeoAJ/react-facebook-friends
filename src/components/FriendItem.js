@@ -21,27 +21,24 @@ const colors = {
 };
 
 const style = {
-  item: {
-    margin: '5px auto',
-    maxWidth: '750px',
-    backgroundColor: 'white',
-    borderBottom: '1px solid #eee',
-    '@media (max-width: 48em)': {
-      position: 'relative'
-    }
-  },
   anchor: {
-    padding: '1em 1em',
-    display: 'block',
+    borderRadius: '3px',
+    marginTop: '5px',
+    marginBottom: '5px',
+    backgroundColor: 'white',
+    maxWidth: '680px',
+    padding: '1px 15px',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    minHeight: '150px',
+    justifyContent: 'space-around',
     color: 'black',
     ':hover': {
       backgroundColor: '#f7f7f7'
     }
   },
   rank: {
-    position: 'relative',
-    top: '-30px',
-    marginRight: '10px',
     textAlign: 'center',
     fontWeight: '400',
     fontSize: '4em',
@@ -51,8 +48,7 @@ const style = {
     borderRadius: '50%'
   },
   imgWrapper: {
-    padding: '10px',
-    display: 'inline-block'
+    padding: '10px'
   },
   img: {
     border: '1px solid rgb(59, 89, 152)',
@@ -63,9 +59,6 @@ const style = {
     color: facebookBlue,
     fontWeight: 'bold',
     fontSize: '0.8em'
-  },
-  clear: {
-    clear: 'both'
   },
   label: {
     textAlign: 'center'
@@ -94,7 +87,6 @@ const labelMap = {
 };
 
 const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
-  <div style={style.item}>
     <a target="_blank" href={link} style={style.anchor}>
       <div style={{
         ...style.rank,
@@ -107,9 +99,7 @@ const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
       <Label {...labelMap.l} value={LIKE} />
       <Label {...labelMap.c} value={COMMENT} />
       <Label {...labelMap.p} value={POST} />
-      <div style={style.clear}></div>
     </a>
-  </div>
 );
 
 export default Radium(FriendItem);

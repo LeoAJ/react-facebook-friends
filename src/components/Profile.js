@@ -30,12 +30,24 @@ class Profile extends Component {
     const { name, link, url, total_count } = this.props;
     const style = {
             profileStyle: {
+              position: 'fixed',
+              width: 'inherit',
+              minHeight: '100vh',
               background: facebookBlue,
               color: '#fff',
-              '@media (min-width: 48em)': {
-                position: 'fixed',
-                top: '0',
-                bottom: '0'
+              '@media (max-width: 1050px)': {
+                position: 'static',
+                width: 'auto',
+                minHeight: 'initial'
+              }
+            },
+            flexContainer: {
+              flex: '1 1 0%',
+              width: '300px',
+              // border: '3px solid green',
+              '@media (max-width: 1050px)': {
+                flex: '1 1 100%',
+                width: 'auto'
               }
             },
             headerStyle: {
@@ -71,14 +83,16 @@ class Profile extends Component {
           };
 
     return (
-      <div className="pure-u-1 pure-u-md-1-4" style={style.profileStyle}>
-        <div style={style.headerStyle}>
-          <a target="_blank" href={link}>
-            <img src={url} alt="profile picture" style={style.imgStyle} />
-          </a>
-          <h1 style={style.nameStyle}>{name}</h1>
-          <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
-          <input placeholder="Search for your friends" style={style.searchInput} onChange={this.changeHandler} autoFocus />
+      <div style={style.flexContainer}>
+        <div style={style.profileStyle}>
+          <div style={style.headerStyle}>
+            <a target="_blank" href={link}>
+              <img src={url} alt="profile picture" style={style.imgStyle} />
+            </a>
+            <h1 style={style.nameStyle}>{name}</h1>
+            <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
+            <input placeholder="Search friends" style={style.searchInput} onChange={this.changeHandler} autoFocus />
+          </div>
         </div>
       </div>
     );
