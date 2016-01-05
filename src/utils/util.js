@@ -95,8 +95,9 @@ export function getData() {
 
           try {
 
-            const feedInstance = getFeedInstance(id);
-            await Promise.all(analyze(response, feedInstance));
+            const feedInstance = getFeedInstance(id);;
+            // corner case! check if user has friends
+            total_count && await Promise.all(analyze(response, feedInstance));
 
             resolve({
               profile: {
@@ -105,7 +106,7 @@ export function getData() {
                 link,
                 url
               },
-              myFriends: feedInstance.sortByScore()
+              myFriends: total_count && feedInstance.sortByScore() || []
             });
 
           } catch (e) {
