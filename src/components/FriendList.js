@@ -5,18 +5,25 @@ import { MAX_OUTPUT } from '../utils/constants';
 
 const style = {
   contentStyle: {
-    padding: '2em 3em 0',
-    marginLeft: '25%',
-    '@media (max-width: 48em)': {
-      maxWidth: '350px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      padding: '2em 1em 0'
+    flex: '3',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    '@media (max-width: 1050px)': {
+      flex: '1 1 100%'
     }
   },
-  noData: {
+  noDataWrapper: {
+    fontSize: '1.5em',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
+    minHeight: '100vh',
+    '@media (max-width: 1050px)': {
+      minHeight: 'auto'
+    }
   }
 };
 
@@ -32,15 +39,13 @@ const renderFriends = ({ myFriends, query }) => {
 
   }, []);
 
-  return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
+  return result.length > 0 ? result : (<div style={style.noDataWrapper}>No results for: "{query}"</div>);
 
 };
 
 const FriendList = (props) => (
   <div style={style.contentStyle}>
-    <div>
-      {renderFriends(props)}
-    </div>
+    {renderFriends(props)}
   </div>
 );
 
