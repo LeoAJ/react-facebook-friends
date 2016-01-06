@@ -24,13 +24,11 @@ const style = {
   }
 };
 
-const ErrMsg = () => (
+export default Radium(() => (
   <div style={style.wrapper}>
     <div style={style.box}>
       <div style={style.title}>Error</div>
       <p style={style.msg}>We are sorry but something went wrong, please try again later.</p>
     </div>
   </div>
-);
-
-export default Radium(ErrMsg);
+));

@@ -5,12 +5,12 @@ import Profile from './Profile';
 import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
 import config from '../../config';
-import { getData } from '../utils/util';
 import Ribbon from './Ribbon';
 import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
 import Radium from 'radium';
+import { getData } from '../utils/util';
 
 class App extends Component {
 
@@ -76,20 +76,19 @@ class App extends Component {
   mainRender() {
 
     const { profile, myFriends, status, query } = this.state;
-    const style = {
-      display: 'flex',
-      '@media (max-width: 1050px)': {
-        flexWrap: 'wrap'
-      }
-    };
-
+    
     if (status === 'err') {
       return (<ErrMsg />);
     } else if (status === 'unknown' || status === 'not_authorized') {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
       return (
-        <div style={style}>
+        <div style={{
+          display: 'flex',
+          '@media (max-width: 1050px)': {
+            flexWrap: 'wrap'
+          }
+        }}>
           <Profile {...profile} />
           <FriendList myFriends={myFriends} query={query} />
         </div>

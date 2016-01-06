@@ -30,7 +30,7 @@ const style = {
   }
 };
 
-const Label = ({ text, icon, top, value }) => (
+export default Radium(({ text, icon, top, value }) => (
   <div style={style.wrapper}>
     <div style={style.valueGroup}>
       <i className={icon}></i>
@@ -38,6 +38,4 @@ const Label = ({ text, icon, top, value }) => (
     </div>
     <div style={style.label}>{text}</div>
   </div>
-);
-
-export default Radium(Label);
+));

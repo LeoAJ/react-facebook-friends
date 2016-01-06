@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Spinjs from 'spin.js';
 import { facebookBlue } from '../utils/constants';
+import Spinjs from 'spin.js';
 
 const config = {
   lines: 13,
@@ -36,21 +36,12 @@ class Spinner extends Component {
   }
 
   render() {
-
-    const style = {
-      blur: {
-        position: 'absolute',
-        opacity: '0.75',
-        backgroundColor: '#ffffff',
-        top: '0',
-        left: '0',
-        bottom: '0',
-        right: '0',
-        'zIndex': '500'
-      }
-    };
-
-    return (<div ref="spin" style={style.blur}></div>);
+    return (<div ref="spin" style={{
+      height: '100vh',
+      opacity: '0.75',
+      backgroundColor: '#ffffff',
+      'zIndex': '500'
+    }}></div>);
   }
 
 }

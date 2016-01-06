@@ -20,6 +20,24 @@ const colors = {
   12: '#1B1C1D'
 };
 
+const labelMap = {
+  c: {
+    text: 'Comments',
+    icon: 'fa fa-comments',
+    top: '63px'
+  },
+  l: {
+    text: 'Likes',
+    icon: 'fa fa-thumbs-o-up',
+    top: '26px'
+  },
+  p: {
+    text: 'Posts',
+    icon: 'fa fa-pencil',
+    top: '100px'
+  }
+};
+
 const style = {
   anchor: {
     borderRadius: '3px',
@@ -76,25 +94,7 @@ const style = {
   }
 };
 
-const labelMap = {
-  c: {
-    text: 'Comments',
-    icon: 'fa fa-comments',
-    top: '63px'
-  },
-  l: {
-    text: 'Likes',
-    icon: 'fa fa-thumbs-o-up',
-    top: '26px'
-  },
-  p: {
-    text: 'Posts',
-    icon: 'fa fa-pencil',
-    top: '100px'
-  }
-};
-
-const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
+export default Radium(({ name, rank, link, url, LIKE, COMMENT, POST }) => (
     <a target="_blank" href={link} style={style.anchor}>
       <div style={{
         ...style.rank,
@@ -110,6 +110,4 @@ const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
         <Label {...labelMap.p} value={POST} />
       </div>
     </a>
-);
-
-export default Radium(FriendItem);
+));

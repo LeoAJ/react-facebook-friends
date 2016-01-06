@@ -5,10 +5,10 @@ import { collectDataWithPaging } from './paging';
 import { POST, LIKE, COMMENT } from './constants';
 
 // return list of promises
-function analyze({ feed, tagged }, feedInstance) {
+function analyze({ feed = { data: [] }, tagged = { data: [] } }, feedInstance) {
 
   const taggedIds = tagged.data.map(tag => tag.id);
-
+  
   return feed.data.map((item) => {
 
     return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ function analyze({ feed, tagged }, feedInstance) {
 
         try {
 
-          if (taggedIds.indexOf(item.id) === -1) {
+          if (taggedIds.indexOf(item.id) < 0) {
 
             // count likes
             item.likes && await collectDataWithPaging(item.likes, LIKE);
@@ -106,7 +106,7 @@ export function getData() {
                 link,
                 url
               },
-              myFriends: total_count && feedInstance.sortByScore() || []
+              myFriends: (total_count && feedInstance.sortByScore()) || []
             });
 
           } catch (e) {

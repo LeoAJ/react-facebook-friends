@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { facebookBlue } from '../utils/constants';
 import Radium from 'radium';
 import emitter from '../utils/emitter';
-import { facebookBlue } from '../utils/constants';
 import isEqual from 'lodash.isequal';
 
 class Profile extends Component {
