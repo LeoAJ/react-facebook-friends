@@ -3,17 +3,8 @@ import FriendItem from './FriendItem';
 import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
-const style = {
-  contentStyle: {
-    flex: '3',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    '@media (max-width: 1050px)': {
-      flex: '1 1 100%'
-    }
-  },
-  noDataWrapper: {
+const emptyResult = (hasFriends, query) => {
+  return <div style={{
     fontSize: '1.5em',
     display: 'flex',
     justifyContent: 'center',
@@ -24,11 +15,7 @@ const style = {
     '@media (max-width: 1050px)': {
       minHeight: 'auto'
     }
-  }
-};
-
-const emptyResult = (hasFriends, query) => {
-  return <div style={style.noDataWrapper}>{hasFriends ? `No results for: "${query}"` : `No friends to show`}</div>;
+  }}>{hasFriends ? `No results for: "${query}"` : `No friends to show`}</div>;
 };
 
 const renderFriends = ({ myFriends, query }) => {
@@ -47,10 +34,16 @@ const renderFriends = ({ myFriends, query }) => {
 
 };
 
-const FriendList = (props) => (
-  <div style={style.contentStyle}>
+export default Radium((props) => (
+  <div style={{
+    flex: '3',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    '@media (max-width: 1050px)': {
+      flex: '1 1 100%'
+    }
+  }}>
     {renderFriends(props)}
   </div>
-);
-
-export default Radium(FriendList);
+));

@@ -30,7 +30,7 @@ const style = {
   }
 };
 
-const Login = ({ FB_login }) => (
+export default Radium(({ FB_login }) => (
   <div style={style.wrapper}>
     <div>
       <h2 style={style.title}>Checkout who are you best friends on Facebook</h2>
@@ -40,6 +40,4 @@ const Login = ({ FB_login }) => (
       </div>
     </div>
   </div>
-);
-
-export default Radium(Login);
+));

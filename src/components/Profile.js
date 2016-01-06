@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { facebookBlue } from '../utils/constants';
 import Radium from 'radium';
 import emitter from '../utils/emitter';
-import { facebookBlue } from '../utils/constants';
 import isEqual from 'lodash.isequal';
 
 class Profile extends Component {
@@ -15,7 +15,7 @@ class Profile extends Component {
     link: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     total_count: PropTypes.number.isRequired
-  }
+  };
 
   changeHandler(e) {
     emitter.emit('search', e.target.value);
