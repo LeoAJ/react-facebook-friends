@@ -3,21 +3,19 @@ import FriendItem from './FriendItem';
 import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
-const style = {
-  contentStyle: {
-    padding: '2em 3em 0',
-    marginLeft: '25%',
-    '@media (max-width: 48em)': {
-      maxWidth: '350px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      padding: '2em 1em 0'
-    }
-  },
-  noData: {
+const emptyResult = (hasFriends, query) => {
+  return <div style={{
+    fontSize: '1.5em',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
-    color: 'white'
-  }
+    color: 'white',
+    minHeight: '100vh',
+    '@media (max-width: 1050px)': {
+      minHeight: 'auto'
+    }
+  }}>{hasFriends ? `No results for: "${query}"` : `No friends to show`}</div>;
 };
 
 const renderFriends = ({ myFriends, query }) => {
@@ -32,16 +30,20 @@ const renderFriends = ({ myFriends, query }) => {
 
   }, []);
 
-  return result.length > 0 ? result : (<div style={style.noData}>No results for: "{query}"</div>);
+  return result.length > 0 ? result : emptyResult(!!myFriends.length, query);
 
 };
 
-const FriendList = (props) => (
-  <div style={style.contentStyle}>
-    <div>
-      {renderFriends(props)}
-    </div>
+export default Radium((props) => (
+  <div style={{
+    flex: '3',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    '@media (max-width: 1050px)': {
+      flex: '1 1 100%'
+    }
+  }}>
+    {renderFriends(props)}
   </div>
-);
-
-export default Radium(FriendList);
+));

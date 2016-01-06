@@ -20,7 +20,7 @@ describe('(Components) ErrMsg', () => {
   it('Should render a <div> as a title', () => {
     const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
     expect(div[1]).to.exist;
-    expect(div[1].textContent).to.match(/Error!!/);
+    expect(div[1].textContent).to.match(/Error/);
   });
 
   it('Should render a <p> as a description', () => {

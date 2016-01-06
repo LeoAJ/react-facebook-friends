@@ -5,11 +5,12 @@ import Profile from './Profile';
 import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
 import config from '../../config';
-import { getData } from '../utils/util';
 import Ribbon from './Ribbon';
 import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
+import Radium from 'radium';
+import { getData } from '../utils/util';
 
 class App extends Component {
 
@@ -28,24 +29,16 @@ class App extends Component {
 
   componentDidMount() {
 
-    emitter.on('search', (query) => {
-      this.setState({ query });
-    });
+    emitter.on('search', query => this.setState({ query }));
 
     window.fbAsyncInit = () => {
 
       FB.init(config);
 
-      FB.getLoginStatus((response) => {
+      // show login
+      FB.getLoginStatus(response => response.status !== 'connected' && this.setState({ status: response.status }));
 
-        if (response.status === 'unknown') {
-          // show log in
-          this.setState({ status: response.status });
-        }
-
-      });
-
-      FB.Event.subscribe('auth.statusChange', (response) => {
+      FB.Event.subscribe('auth.authResponseChange', (response) => {
 
         // start spinner
         this.setState({ status: 'loading' });
@@ -83,14 +76,19 @@ class App extends Component {
   mainRender() {
 
     const { profile, myFriends, status, query } = this.state;
-
+    
     if (status === 'err') {
       return (<ErrMsg />);
-    } else if (status === 'unknown') {
+    } else if (status === 'unknown' || status === 'not_authorized') {
       return <Login FB_login={this._click} />;
     } else if (status === 'connected') {
       return (
-        <div className="pure-g">
+        <div style={{
+          display: 'flex',
+          '@media (max-width: 1050px)': {
+            flexWrap: 'wrap'
+          }
+        }}>
           <Profile {...profile} />
           <FriendList myFriends={myFriends} query={query} />
         </div>
@@ -112,4 +110,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default Radium(App);

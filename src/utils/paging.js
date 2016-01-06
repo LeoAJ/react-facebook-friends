@@ -37,6 +37,7 @@ export async function collectDataWithPaging({ data, paging }, type) {
 
     } else {
 
+      // terminate recursion
       iterateData(data, type);
       return;
 

@@ -23,7 +23,7 @@ describe('(Components) FriendItem', () => {
   });
 
   it('Should render a parent <div>', () => {
-    expect(_component.type).to.equal('div');
+    expect(_component.type).to.equal('a');
   });
 
   it('Should render an anchor tag', () => {
@@ -38,14 +38,14 @@ describe('(Components) FriendItem', () => {
 
   it('Should render a <div> for rank', () => {
     const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
-    expect(div[1]).to.exist;
-    expect(div[1].textContent).to.match(/3/);
+    expect(div[0]).to.exist;
+    expect(div[0].textContent).to.match(/3/);
   });
 
   it('Should render a <div> for name', () => {
     const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
-    expect(div[3]).to.exist;
-    expect(div[3].textContent).to.match(/Leo Hsieh/);
+    expect(div[2]).to.exist;
+    expect(div[2].textContent).to.match(/Leo Hsieh/);
   });
 
 });

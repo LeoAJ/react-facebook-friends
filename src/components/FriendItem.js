@@ -20,61 +20,6 @@ const colors = {
   12: '#1B1C1D'
 };
 
-const style = {
-  item: {
-    margin: '5px auto',
-    maxWidth: '750px',
-    backgroundColor: 'white',
-    borderBottom: '1px solid #eee',
-    '@media (max-width: 48em)': {
-      position: 'relative'
-    }
-  },
-  anchor: {
-    padding: '1em 1em',
-    display: 'block',
-    color: 'black',
-    ':hover': {
-      backgroundColor: '#f7f7f7'
-    }
-  },
-  rank: {
-    position: 'relative',
-    top: '-30px',
-    marginRight: '10px',
-    textAlign: 'center',
-    fontWeight: '400',
-    fontSize: '4em',
-    width: '80px',
-    display: 'inline-block',
-    color: 'white',
-    borderRadius: '50%'
-  },
-  imgWrapper: {
-    padding: '10px',
-    display: 'inline-block'
-  },
-  img: {
-    border: '1px solid rgb(59, 89, 152)',
-    borderRadius: '3px'
-  },
-  name: {
-    textAlign: 'center',
-    color: facebookBlue,
-    fontWeight: 'bold',
-    fontSize: '0.8em'
-  },
-  clear: {
-    clear: 'both'
-  },
-  label: {
-    textAlign: 'center'
-  },
-  value: {
-    fontSize: '6em'
-  }
-};
-
 const labelMap = {
   c: {
     text: 'Comments',
@@ -93,8 +38,63 @@ const labelMap = {
   }
 };
 
-const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
-  <div style={style.item}>
+const style = {
+  anchor: {
+    borderRadius: '3px',
+    marginTop: '5px',
+    marginBottom: '5px',
+    backgroundColor: 'white',
+    maxWidth: '680px',
+    padding: '1px 15px',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    minHeight: '150px',
+    justifyContent: 'space-around',
+    color: 'black',
+    ':hover': {
+      backgroundColor: '#f7f7f7'
+    }
+  },
+  rank: {
+    textAlign: 'center',
+    fontWeight: '400',
+    fontSize: '4em',
+    width: '80px',
+    display: 'inline-block',
+    color: 'white',
+    borderRadius: '50%'
+  },
+  imgWrapper: {
+    padding: '10px'
+  },
+  img: {
+    border: '1px solid rgb(59, 89, 152)',
+    borderRadius: '3px'
+  },
+  name: {
+    textAlign: 'center',
+    color: facebookBlue,
+    fontWeight: 'bold',
+    fontSize: '0.8em'
+  },
+  label: {
+    textAlign: 'center'
+  },
+  value: {
+    fontSize: '6em'
+  },
+  labelWrapper: {
+    display: 'flex',
+    '@media (max-width: 590px)': {
+      flexWrap: 'wrap',
+      minHeight: 'inherit',
+      alignItems: 'center'
+    }
+  }
+};
+
+export default Radium(({ name, rank, link, url, LIKE, COMMENT, POST }) => (
     <a target="_blank" href={link} style={style.anchor}>
       <div style={{
         ...style.rank,
@@ -104,12 +104,10 @@ const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
         <img src={url} alt={name} style={style.img} />
         <div style={style.name}>{name}</div>
       </div>
-      <Label {...labelMap.l} value={LIKE} />
-      <Label {...labelMap.c} value={COMMENT} />
-      <Label {...labelMap.p} value={POST} />
-      <div style={style.clear}></div>
+      <div style={style.labelWrapper}>
+        <Label {...labelMap.l} value={LIKE} />
+        <Label {...labelMap.c} value={COMMENT} />
+        <Label {...labelMap.p} value={POST} />
+      </div>
     </a>
-  </div>
-);
-
-export default Radium(FriendItem);
+));
