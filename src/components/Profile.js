@@ -15,7 +15,7 @@ class Profile extends Component {
     link: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     total_count: PropTypes.number.isRequired
-  }
+  };
 
   changeHandler(e) {
     emitter.emit('search', e.target.value);
