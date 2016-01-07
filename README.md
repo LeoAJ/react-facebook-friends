@@ -41,6 +41,10 @@ First thing first you need to figure out which ES7 feature you would like to use
 
 ## Dev
 
+Register a Facebook App first [here](https://developers.facebook.com/docs/apps/register), and replace your app ID [here](https://github.com/LeoAJ/react-facebook-friends/blob/master/config/index.js#L2).
+
+Then do,
+
 ```
 npm start
 ```
