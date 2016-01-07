@@ -1,5 +1,5 @@
 export default {
-  appId: '474168566102860',
+  appId: 'Your FB API app ID',
   cookie: true,
   xfbml: false,
   version: 'v2.5'
