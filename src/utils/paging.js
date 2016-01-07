@@ -8,16 +8,7 @@ function getPagingData(url) {
 }
 
 function iterateData(data, type) {
-
-  data.forEach((item) => {
-
-    feedInstance.add({
-      user: item.from || item,
-      type
-    });
-
-  });
-
+  data.forEach(item => feedInstance.add({ user: item.from || item, type }));
 }
 
 export async function collectDataWithPaging({ data, paging }, type) {
@@ -27,13 +18,8 @@ export async function collectDataWithPaging({ data, paging }, type) {
     if (paging.next) {
 
       const pagingData = await getPagingData(paging.next);
-
       data = data.concat(pagingData.data);
-
-      await collectDataWithPaging({
-        data,
-        paging: pagingData.paging
-      }, type);
+      await collectDataWithPaging({ data, paging: pagingData.paging }, type);
 
     } else {
 
