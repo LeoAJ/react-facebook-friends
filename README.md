@@ -73,7 +73,7 @@ npm test
 * react
 * babel 6
 * ES6
-* ES7 (async/awai)
+* ES7 (async/await)
 * [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * inline CSS [(Radium)](http://stack.formidable.com/radium/)
 * Flexbox
