@@ -5,11 +5,19 @@
 [![Travis](https://img.shields.io/travis/LeoAJ/react-facebook-friends.svg?style=flat-square)](https://travis-ci.org/LeoAJ/react-facebook-friends)
 [![npm](https://img.shields.io/npm/l/express.svg?style=flat-square)](https://github.com/LeoAJ/react-facebook-friends/blob/master/LICENSE)
 
-web app to rank your friendship on Facebook with React
+web app to rank, quantify your FaceBook friendship based on human behavior with React
+
+# Live Demo
+
+http://leoj.js.org/react-facebook-friends/
+
+<!--
 
 ## Detail
 
 To know more detail, please read my [post](http://leoj.js.org/personal/React-iTunes-Search/).
+
+-->
 
 ## How to use ES7 feature with babel 6
 
@@ -60,9 +68,23 @@ use karma
 npm test
 ```
 
+## Built with
+
+* react
+* babel 6
+* ES6
+* ES7 (async/awai)
+* [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
+* inline CSS [(Radium)](http://stack.formidable.com/radium/)
+* Flexbox
+* Webpack
+* Eslint
+* Karma
+* Facebook API
+
 ## Contribution
 
-Feel free to open an issue or submit a PR if there is anything wrong or can be improved.
+Issue, idea, PR are welcomed.
 
 ## License
 
