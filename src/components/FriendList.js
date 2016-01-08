@@ -38,8 +38,8 @@ export default Radium((props) => (
   <div style={{
     flex: '3',
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
     '@media (max-width: 1050px)': {
       flex: '1 1 100%'
     }

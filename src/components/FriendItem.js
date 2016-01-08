@@ -40,6 +40,7 @@ const labelMap = {
 
 const style = {
   anchor: {
+    minWidth: '300px',
     borderRadius: '3px',
     marginTop: '5px',
     marginBottom: '5px',
