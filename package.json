@@ -2,6 +2,10 @@
   "name": "react-facebook-friends",
   "version": "1.0.0",
   "description": "web app to rank your friendship on Facebook with React",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LeoAJ/react-facebook-friends.git"
+  },
   "scripts": {
     "lint": "eslint src/ webpack/ config/ test/ server.js",
     "karma": "NODE_ENV=test ./node_modules/karma/bin/karma start",
