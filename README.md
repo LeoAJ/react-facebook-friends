@@ -11,15 +11,11 @@ web app to rank, quantify your FaceBook friendship based on human behavior with 
 
 http://leoj.js.org/react-facebook-friends/
 
-<!--
-
 ## Detail
 
 To know more detail, please read my [post](http://leoj.js.org/personal/React-iTunes-Search/).
 
--->
-
-## How to use ES7 feature with babel 6
+## How to use ES7 feature with Babel 6
 
 First thing first you need to figure out which ES7 feature you would like to use, for example, you want to use `object-rest-spread`.
 
@@ -58,15 +54,11 @@ npm run deploy
 
 ## Lint
 
-use eslint
-
 ```
 npm run lint
 ```
 
 ## Test
-
-use karma
 
 ```
 npm test
@@ -74,12 +66,12 @@ npm test
 
 ## Built with
 
-* react
-* babel 6
+* React
+* Babel 6
 * ES6
 * ES7 (async/await)
 * [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
-* inline CSS [(Radium)](http://stack.formidable.com/radium/)
+* Inline CSS [(Radium)](http://stack.formidable.com/radium/)
 * Flexbox
 * Webpack
 * Eslint
