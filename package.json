@@ -77,7 +77,7 @@
     "yargs": "^3.31.0"
   },
   "dependencies": {
-    "lodash.isequal": "^3.0.4",
+    "lodash.isequal": "^4.0.0",
     "radium": "^0.15.3",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
