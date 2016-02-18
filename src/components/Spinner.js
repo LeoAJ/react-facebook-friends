@@ -32,16 +32,19 @@ class Spinner extends Component {
 
   componentDidMount() {
     this.instance = new Spinjs(config);
-    this.instance.spin(this.refs.spin);
+    this.instance.spin(this.hello);
   }
 
   render() {
-    return (<div ref="spin" style={{
-      height: '100vh',
-      opacity: '0.75',
-      backgroundColor: '#ffffff',
-      'zIndex': '500'
-    }}></div>);
+    return (
+      <div ref={c => this.hello = c} style={{
+        height: '100vh',
+        opacity: '0.75',
+        backgroundColor: '#ffffff',
+        'zIndex': '500'
+      }}>
+      </div>
+    );
   }
 
 }

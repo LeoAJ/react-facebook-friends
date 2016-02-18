@@ -8,7 +8,7 @@ import { POST, LIKE, COMMENT } from './constants';
 function analyze({ feed = { data: [] }, tagged = { data: [] } }, feedInstance) {
 
   const taggedIds = tagged.data.map(tag => tag.id);
-  
+
   return feed.data.map((item) => {
 
     return new Promise((resolve, reject) => {
@@ -57,8 +57,8 @@ export function getData() {
 
     const sm = 100,
           md = 200,
-          fbName = `name`,
-          fbLink = `link`,
+          fbName = 'name',
+          fbLink = 'link',
           fbSmPicture = `picture.width(${sm}).height(${sm})`,
           fbMdPicture = `picture.width(${md}).height(${md})`,
           fbFromUser = `from{${fbName},${fbLink},${fbSmPicture}}`;

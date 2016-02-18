@@ -34,7 +34,7 @@
     "babel": "^6.3.26",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
-    "babel-eslint": "^4.1.5",
+    "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-react-transform": "^2.0.0-beta1",
     "babel-plugin-syntax-async-functions": "^6.3.13",
@@ -48,8 +48,9 @@
     "babel-preset-react": "^6.3.13",
     "chai-as-promised": "^5.2.0",
     "css-loader": "^0.23.0",
-    "eslint": "^1.7.3",
+    "eslint": "^2.1.0",
     "eslint-plugin-babel": "^3.0.0",
+    "eslint-plugin-react": "^3.16.1",
     "express": "^4.13.3",
     "file-loader": "^0.8.5",
     "imports-loader": "^0.6.5",
@@ -59,7 +60,7 @@
     "karma-mocha": "^0.2.1",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sinon-chai": "^1.1.0",
-    "karma-spec-reporter": "0.0.23",
+    "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
     "phantomjs-polyfill": "0.0.1",
@@ -74,7 +75,7 @@
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
-    "yargs": "^3.31.0"
+    "yargs": "^4.1.0"
   },
   "dependencies": {
     "lodash.isequal": "^4.0.0",

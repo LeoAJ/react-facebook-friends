@@ -4,18 +4,22 @@ import Radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
 const emptyResult = (hasFriends, query) => {
-  return <div style={{
-    fontSize: '1.5em',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    color: 'white',
-    minHeight: '100vh',
-    '@media (max-width: 1050px)': {
-      minHeight: 'auto'
-    }
-  }}>{hasFriends ? `No results for: "${query}"` : `No friends to show`}</div>;
+  return (
+    <div style={{
+      fontSize: '1.5em',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      color: 'white',
+      minHeight: '100vh',
+      '@media (max-width: 1050px)': {
+        minHeight: 'auto'
+      }
+    }}>
+      {hasFriends ? `No results for: "${query}"` : 'No friends to show'}
+    </div>
+  );
 };
 
 const renderFriends = ({ myFriends, query }) => {
