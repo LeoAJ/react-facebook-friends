@@ -15,20 +15,6 @@ http://leoj.js.org/react-facebook-friends/
 
 To know more detail, please read my [post](http://leoj.js.org/personal/React-iTunes-Search/).
 
-## How to use ES7 feature with Babel 6
-
-First thing first you need to figure out which ES7 feature you would like to use, for example, you want to use `object-rest-spread`.
-
-1. npm install `babel-plugin-syntax-object-rest-spread` and `babel-plugin-transform-object-rest-spread`, the difference between syntax plugin and transform plugin is syntax plugin allowed the code to read the syntax only, if you want to transforms new syntax back to ES5 version, you will need transform plugin.
-
-2. Put those plugins in your `.babelrc` file.
-
-```
-{
-  "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
-}
-```
-
 ## Installation
 
 1. `git clone git@github.com:LeoAJ/react-facebook-friends.git`

@@ -7,7 +7,7 @@ const setConfig = () => {
 
   return {
     files: [
-      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      './node_modules/babel-polyfill/dist/polyfill.js',
       './test/components/**.js',
       './' + KARMA_ENTRY_FILE
     ],
