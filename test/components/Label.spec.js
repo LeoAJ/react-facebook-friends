@@ -3,20 +3,17 @@ import Label from '../../src/components/Label';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Label', () => {
-
-  let _component, _rendered, _props;
+  let _component, _rendered;
+  const _props = {
+    text: 'Likes',
+    icon: 'fa fa-thumbs-o-up',
+    top: '26px',
+    value: 12
+  };
 
   beforeEach(() => {
-
-    _props = {
-      text: 'Likes',
-      icon: 'fa fa-thumbs-o-up',
-      top: '26px',
-      value: 12
-    };
     _component = shallowRender(Label, _props);
     _rendered = renderIntoDocument(Label, _props);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -39,5 +36,4 @@ describe('(Components) Label', () => {
     expect(div[2]).to.exist;
     expect(div[2].textContent).to.match(/Likes/);
   });
-
 });

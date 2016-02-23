@@ -3,11 +3,9 @@ import FriendList from '../../src/components/FriendList';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) FriendList', () => {
-
   let _component, _rendered, _props;
 
   beforeEach(() => {
-
     _props = {
       myFriends: [{
         name: 'roy'
@@ -18,8 +16,6 @@ describe('(Components) FriendList', () => {
       query: undefined
     };
     _component = shallowRender(FriendList, _props);
-
-
   });
 
   it('Should render a parent <div>', () => {
@@ -38,5 +34,4 @@ describe('(Components) FriendList', () => {
     const anchor = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'a');
     expect(anchor.length).to.equal(1);
   });
-  
 });

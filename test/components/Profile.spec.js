@@ -4,20 +4,17 @@ import emitter from '../../src/utils/emitter';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Profile', () => {
-
-  let _component, _rendered, _props;
+  let _component, _rendered;
+  const _props = {
+    name: 'Leo',
+    link: 'mock_link',
+    url: 'http://leoj.js.org/',
+    total_count: 123
+  };
 
   beforeEach(() => {
-
-    _props = {
-      name: 'Leo',
-      link: 'mock_link',
-      url: 'http://leoj.js.org/',
-      total_count: 123
-    };
     _component = shallowRender(Profile, _props);
     _rendered = renderIntoDocument(Profile, _props);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -57,5 +54,4 @@ describe('(Components) Profile', () => {
     TestUtils.Simulate.change(input);
     emitter.emit.should.have.been.called;
   });
-
 });

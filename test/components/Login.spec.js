@@ -3,19 +3,14 @@ import Login from '../../src/components/Login';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Login', () => {
+  let _component, _rendered;
 
-  let _component, _rendered, _props, _spy;
+  const _spy = { fBLogin: sinon.spy() },
+        _props = { fBLogin: _spy.fBLogin };
 
   beforeEach(() => {
-    _spy = {
-      FB_login: sinon.spy()
-    };
-    _props = {
-      FB_login: _spy.FB_login
-    };
     _component = shallowRender(Login, _props);
     _rendered = renderIntoDocument(Login, _props);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -34,11 +29,10 @@ describe('(Components) Login', () => {
     expect(button.textContent).to.match(/Agree/);
   });
 
-  it('Should execute "FB_login" function while button get clicked', () => {
+  it('Should execute "fBLogin" function while button get clicked', () => {
     const button = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'button');
-    _spy.FB_login.should.have.not.been.called;
+    _spy.fBLogin.should.have.not.been.called;
     TestUtils.Simulate.click(button);
-    _spy.FB_login.should.have.been.called;
+    _spy.fBLogin.should.have.been.called;
   });
-
 });

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { facebookBlue } from '../utils/constants';
-import Radium from 'radium';
+import radium from 'radium';
 
 const style = {
   wrapper: {
@@ -30,7 +30,7 @@ const style = {
   }
 };
 
-export default Radium(({ text, icon, top, value }) => (
+export default radium(({ text, icon, top, value }) => (
   <div style={style.wrapper}>
     <div style={style.valueGroup}>
       <i className={icon}></i>

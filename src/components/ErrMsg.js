@@ -1,5 +1,5 @@
 import React from 'react';
-import Radium from 'radium';
+import radium from 'radium';
 
 const style = {
   wrapper: {
@@ -24,7 +24,7 @@ const style = {
   }
 };
 
-export default Radium(() => (
+export default radium(() => (
   <div style={style.wrapper}>
     <div style={style.box}>
       <div style={style.title}>Error</div>

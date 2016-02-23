@@ -5,7 +5,6 @@ function singleton() {
   let instance;
   return {
     get(currentUserId) {
-
       if (!instance) {
         instance = new Feed(currentUserId);
       }
@@ -17,6 +16,6 @@ function singleton() {
       return instance;
     }
   };
-};
+}
 
 export default singleton().get;

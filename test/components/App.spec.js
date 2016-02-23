@@ -8,14 +8,11 @@ import FriendList from '../../src/components/FriendList';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) App', () => {
-
   let _component, _rendered;
 
   beforeEach(() => {
-
     _component = shallowRender(App);
     _rendered = renderIntoDocument(App);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -55,5 +52,4 @@ describe('(Components) App', () => {
     expect(TestUtils.isCompositeComponentWithType(profile, Profile)).to.be.true;
     expect(TestUtils.isCompositeComponentWithType(friendList, FriendList)).to.be.true;
   });
-
 });

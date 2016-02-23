@@ -1,4 +1,5 @@
-/*global __dirname*/
+/* global __dirname */
+/* eslint no-console: 0 */
 
 import path from 'path';
 import express from 'express';
@@ -13,13 +14,13 @@ const app = express(),
       port = 3000;
 
 app.use(webpackDevMiddleware(compiler, {
-  stats  : {
-    colors : true
+  stats: {
+    colors: true
   },
   hot: true,
-  quiet  : false,
-  lazy   : false,
-  noInfo : false,
+  quiet: false,
+  lazy: false,
+  noInfo: false,
   historyApiFallback: true,
   publicPath: config.output.publicPath
 }));
@@ -31,7 +32,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, host, (err) => {
-
   if (err) {
     console.log(err);
     return;

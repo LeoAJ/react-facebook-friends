@@ -3,23 +3,20 @@ import FriendItem from '../../src/components/FriendItem';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) FriendItem', () => {
-
-  let _component, _rendered, _props;
+  let _component, _rendered;
+  const _props = {
+    name: 'Leo Hsieh',
+    rank: 3,
+    link: 'mock_link',
+    url: 'http://leoj.js.org',
+    LIKE: 1,
+    COMMENT: 2,
+    POST: 3
+  };
 
   beforeEach(() => {
-
-    _props = {
-      name: 'Leo Hsieh',
-      rank: 3,
-      link: 'mock_link',
-      url: 'http://leoj.js.org',
-      LIKE: 1,
-      COMMENT: 2,
-      POST: 3
-    };
     _component = shallowRender(FriendItem, _props);
     _rendered = renderIntoDocument(FriendItem, _props);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -47,5 +44,4 @@ describe('(Components) FriendItem', () => {
     expect(div[2]).to.exist;
     expect(div[2].textContent).to.match(/Leo Hsieh/);
   });
-
 });

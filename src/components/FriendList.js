@@ -1,6 +1,6 @@
 import React from 'react';
 import FriendItem from './FriendItem';
-import Radium from 'radium';
+import radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
 
 const emptyResult = (hasFriends, query) => {
@@ -23,22 +23,17 @@ const emptyResult = (hasFriends, query) => {
 };
 
 const renderFriends = ({ myFriends, query }) => {
-
   const result = myFriends.reduce((prev, curr, i) => {
-
     if (curr.name.match(new RegExp(query, 'i'))) {
       prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
     }
 
     return prev;
-
   }, []);
-
   return result.length > 0 ? result : emptyResult(!!myFriends.length, query);
-
 };
 
-export default Radium((props) => (
+export default radium((props) => (
   <div style={{
     flex: '3',
     display: 'flex',

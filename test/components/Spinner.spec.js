@@ -3,7 +3,6 @@ import Spinner from '../../src/components/Spinner';
 import { shallowRender } from '../testHelper';
 
 describe('(Components) Spinner', () => {
-
   let _component;
 
   beforeEach(() => {
@@ -13,5 +12,4 @@ describe('(Components) Spinner', () => {
   it('Should render a parent <div>', () => {
     expect(_component.type).to.equal('div');
   });
-
 });

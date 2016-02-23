@@ -1,5 +1,12 @@
-
-import { LIKE_POINT, COMMENT_POINT, POST_POINT, POST, LIKE, COMMENT, MAX_OUTPUT } from './constants';
+import {
+  LIKE_POINT,
+  COMMENT_POINT,
+  POST_POINT,
+  POST,
+  LIKE,
+  COMMENT,
+  MAX_OUTPUT
+} from './constants';
 
 class Feed {
 
@@ -9,8 +16,8 @@ class Feed {
     this.info = [];
   }
 
-  add({ user, type, score = LIKE_POINT }) {
-
+  add({ user, type }) {
+    let score;
     const {
       id,
       name,
@@ -30,16 +37,15 @@ class Feed {
       score = COMMENT_POINT;
     } else if (type === POST) {
       score = POST_POINT;
+    } else {
+      score = LIKE_POINT;
     }
 
     if (this.key.hasOwnProperty(id)) {
-
       // existed
       this.info[this.key[id]].score += score;
       this.info[this.key[id]][type]++;
-
     } else {
-
       // new
       this.key[id] = this.info.length;
       this.info.push({
@@ -52,9 +58,7 @@ class Feed {
         LIKE: type === LIKE ? 1 : 0,
         COMMENT: type === COMMENT ? 1 : 0
       });
-
     }
-
   }
 
   // sort and only output first 25 items

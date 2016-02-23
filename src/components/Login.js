@@ -1,5 +1,5 @@
 import React from 'react';
-import Radium from 'radium';
+import radium from 'radium';
 
 const style = {
   btn: {
@@ -30,13 +30,13 @@ const style = {
   }
 };
 
-export default Radium(({ FB_login }) => (
+export default radium(({ fBLogin }) => (
   <div style={style.wrapper}>
     <div>
       <h2 style={style.title}>Checkout who are you best friends on Facebook</h2>
       <div style={style.main}>
         <h4>Facebook required your permission to do further action</h4>
-        <button className="pure-button" style={style.btn} onClick={FB_login}>Agree</button>
+        <button className="pure-button" style={style.btn} onClick={fBLogin}>Agree</button>
       </div>
     </div>
   </div>

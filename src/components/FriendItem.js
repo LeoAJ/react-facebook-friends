@@ -1,6 +1,6 @@
 import React from 'react';
 import Label from './Label';
-import Radium from 'radium';
+import radium from 'radium';
 import { POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
 import { facebookBlue } from '../utils/constants';
 
@@ -95,7 +95,7 @@ const style = {
   }
 };
 
-export default Radium(({ name, rank, link, url, LIKE, COMMENT, POST }) => (
+export default radium(({ name, rank, link, url, LIKE, COMMENT, POST }) => (
     <a target="_blank" href={link} style={style.anchor}>
       <div style={{
         ...style.rank,

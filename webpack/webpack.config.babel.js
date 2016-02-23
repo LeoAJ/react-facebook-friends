@@ -1,4 +1,4 @@
-/*global __dirname*/
+/* global __dirname */
 
 import webpack from 'webpack';
 import webpackConfig from './_base';

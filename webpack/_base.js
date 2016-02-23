@@ -1,10 +1,10 @@
-/*global __dirname*/
+/* global __dirname */
 
 import path from 'path';
 
 const webpackConfig = {
   target: 'web',
-  entry: [path.resolve(__dirname, '../', 'src/')],
+  entry: ['babel-polyfill', path.resolve(__dirname, '../', 'src/')],
   output: {
     publicPath: '/dist/',
     path: path.resolve(__dirname, '../', 'dist/'),

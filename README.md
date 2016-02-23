@@ -40,6 +40,8 @@ npm run deploy
 
 ## Lint
 
+run eslint, using [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) rules.
+
 ```
 npm run lint
 ```
@@ -60,7 +62,7 @@ npm test
 * Inline CSS [(Radium)](http://stack.formidable.com/radium/)
 * Flexbox
 * Webpack
-* Eslint
+* Eslint 2.0
 * Karma
 * Facebook API
 

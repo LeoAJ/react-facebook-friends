@@ -26,10 +26,6 @@ const config = {
 
 class Spinner extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.instance = new Spinjs(config);
     this.instance.spin(this.hello);
@@ -41,7 +37,7 @@ class Spinner extends Component {
         height: '100vh',
         opacity: '0.75',
         backgroundColor: '#ffffff',
-        'zIndex': '500'
+        zIndex: '500'
       }}>
       </div>
     );

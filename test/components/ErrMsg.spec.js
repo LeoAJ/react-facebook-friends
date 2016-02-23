@@ -3,14 +3,11 @@ import ErrMsg from '../../src/components/ErrMsg';
 import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) ErrMsg', () => {
-
   let _component, _rendered;
 
   beforeEach(() => {
-
     _component = shallowRender(ErrMsg);
     _rendered = renderIntoDocument(ErrMsg);
-
   });
 
   it('Should render a parent <div>', () => {
@@ -28,5 +25,4 @@ describe('(Components) ErrMsg', () => {
     expect(p).to.exist;
     expect(p.textContent).to.match(/We are sorry but something went wrong, please try again later./);
   });
-
 });

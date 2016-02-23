@@ -1,7 +1,7 @@
 import React from 'react';
-import Radium from 'radium';
+import radium from 'radium';
 
-export default Radium(() => (
+export default radium(() => (
   <div className="github-fork-ribbon-wrapper left fixed" style={{
     '@media (max-width: 48em)': {
       display: 'none'

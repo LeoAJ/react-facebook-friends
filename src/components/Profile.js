@@ -1,14 +1,63 @@
 import React, { Component, PropTypes } from 'react';
 import { facebookBlue } from '../utils/constants';
-import Radium from 'radium';
+import radium from 'radium';
 import emitter from '../utils/emitter';
 import isEqual from 'lodash.isequal';
 
-class Profile extends Component {
-
-  constructor(props) {
-    super(props);
+const style = {
+  profileStyle: {
+    position: 'fixed',
+    width: 'inherit',
+    minHeight: '100vh',
+    background: facebookBlue,
+    color: '#fff',
+    '@media (max-width: 1050px)': {
+      position: 'static',
+      width: 'auto',
+      minHeight: 'initial'
+    }
+  },
+  flexContainer: {
+    flex: '1 1 0%',
+    width: '300px',
+    '@media (max-width: 1050px)': {
+      flex: '1 1 100%',
+      width: 'auto'
+    }
+  },
+  headerStyle: {
+    textAlign: 'center',
+    top: 'auto',
+    margin: '3em auto',
+    padding: '1em',
+    '@media (min-width: 48em)': {
+      margin: '50% 1em 0'
+    }
+  },
+  imgStyle: {
+    border: '3px solid white',
+    borderRadius: '3px'
+  },
+  nameStyle: {
+    margin: '0'
+  },
+  countStyle: {
+    margin: '0',
+    color: 'rgb(176, 202, 219)',
+    fontWeight: '300'
+  },
+  searchInput: {
+    color: 'black',
+    marginTop: '5px',
+    boxSizing: 'border-box',
+    padding: '.5em',
+    width: '75%',
+    borderRadius: '3px',
+    border: '1px solid #aaa'
   }
+};
+
+class Profile extends Component {
 
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -26,63 +75,16 @@ class Profile extends Component {
   }
 
   render() {
-
     const { name, link, url, total_count } = this.props;
     const renderSearchBox = () => {
-      return total_count === 0 ? null : <input placeholder="Search friends" style={style.searchInput} onChange={this.changeHandler} autoFocus />;
+      return total_count === 0
+            ? null
+            : <input
+                placeholder="Search friends"
+                style={style.searchInput}
+                onChange={this.changeHandler}
+                autoFocus />;
     };
-    const style = {
-            profileStyle: {
-              position: 'fixed',
-              width: 'inherit',
-              minHeight: '100vh',
-              background: facebookBlue,
-              color: '#fff',
-              '@media (max-width: 1050px)': {
-                position: 'static',
-                width: 'auto',
-                minHeight: 'initial'
-              }
-            },
-            flexContainer: {
-              flex: '1 1 0%',
-              width: '300px',
-              '@media (max-width: 1050px)': {
-                flex: '1 1 100%',
-                width: 'auto'
-              }
-            },
-            headerStyle: {
-              textAlign: 'center',
-              top: 'auto',
-              margin: '3em auto',
-              padding: '1em',
-              '@media (min-width: 48em)': {
-                margin: '50% 1em 0'
-              }
-            },
-            imgStyle: {
-              border: '3px solid white',
-              borderRadius: '3px'
-            },
-            nameStyle: {
-              margin: '0'
-            },
-            countStyle: {
-              margin: '0',
-              color: 'rgb(176, 202, 219)',
-              fontWeight: '300'
-            },
-            searchInput: {
-              color: 'black',
-              marginTop: '5px',
-              boxSizing: 'border-box',
-              padding: '.5em',
-              width: '75%',
-              borderRadius: '3px',
-              border: '1px solid #aaa'
-            }
-          };
 
     return (
       <div style={style.flexContainer}>
@@ -101,4 +103,4 @@ class Profile extends Component {
   }
 }
 
-export default Radium(Profile);
+export default radium(Profile);

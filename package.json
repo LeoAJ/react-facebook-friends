@@ -7,7 +7,7 @@
     "url": "git@github.com:LeoAJ/react-facebook-friends.git"
   },
   "scripts": {
-    "lint": "eslint src/ webpack/ config/ test/ server.js",
+    "lint": "eslint src/ server.js config/ webpack/ test/",
     "karma": "NODE_ENV=test ./node_modules/karma/bin/karma start",
     "test": "npm run lint && npm run karma",
     "test:dev": "npm run karma -- --watch",
@@ -45,7 +45,8 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "css-loader": "^0.23.0",
-    "eslint": "^2.1.0",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.0.2",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^4.0.0",
     "express": "^4.13.3",
