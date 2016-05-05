@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git@github.com:LeoAJ/react-facebook-friends.git"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "scripts": {
     "lint": "eslint src/ server.js config/ webpack/ test/",
     "karma": "NODE_ENV=test ./node_modules/karma/bin/karma start",
