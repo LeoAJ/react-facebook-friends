@@ -79,7 +79,6 @@ class App extends Component {
 
   mainRender = () => {
     const { profile, myFriends, status, query } = this.state;
-    console.log(status);
     if (status === 'err') {
       return (<ErrMsg />);
     } else if (status === 'unknown' || status === 'not_authorized') {
@@ -92,7 +91,6 @@ class App extends Component {
         </div>
       );
     }
-    
     return (<Spinner />);
   };
 
