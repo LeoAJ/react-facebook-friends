@@ -9,13 +9,13 @@ parserOptions:
 parser: "babel-eslint"
 
 plugins:
-  - babel
   - react
 
 extends:
-  "airbnb/base"
+  - airbnb
 
 rules:
+  no-underscore-dangle: 0
   one-var-declaration-per-line: 0
   no-unused-vars: 0
   comma-dangle: 0
@@ -28,8 +28,3 @@ rules:
   camelcase: 0
   indent: 0
   no-unused-expressions: [2, { allowTernary: true, allowShortCircuit: true }]
-  babel/generator-star-spacing: 1
-  babel/object-curly-spacing: [2, "always"]
-  babel/object-shorthand: 1
-  babel/arrow-parens: 0
-  babel/no-await-in-loop: 1
