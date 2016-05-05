@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FriendItem from './FriendItem';
-import radium from 'radium';
 import { MAX_OUTPUT } from '../utils/constants';
+import jss from 'jss';
+import camelCase from 'jss-camel-case';
+
+jss.use(camelCase());
+
+const { classes } = jss.createStyleSheet({
+  nodata: {
+    fontSize: '1.5em',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: 'white',
+    minHeight: '100vh',
+  },
+  wrapper: {
+    flex: '3',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  '@media (max-width: 1050px)': {
+    wrapper: {
+      flex: '1 1 100%'
+    },
+    nodata: {
+      minHeight: 'auto'
+    }
+  }
+}).attach();
 
 const emptyResult = (hasFriends, query) => {
   return (
-    <div style={{
-      fontSize: '1.5em',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      textAlign: 'center',
-      color: 'white',
-      minHeight: '100vh',
-      '@media (max-width: 1050px)': {
-        minHeight: 'auto'
-      }
-    }}>
+    <div className={classes.nodata}>
       {hasFriends ? `No results for: "${query}"` : 'No friends to show'}
     </div>
   );
@@ -33,16 +51,15 @@ const renderFriends = ({ myFriends, query }) => {
   return result.length > 0 ? result : emptyResult(!!myFriends.length, query);
 };
 
-export default radium((props) => (
-  <div style={{
-    flex: '3',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '@media (max-width: 1050px)': {
-      flex: '1 1 100%'
-    }
-  }}>
+const FriendList = (props) => (
+  <div className={classes.wrapper}>
     {renderFriends(props)}
   </div>
-));
+);
+
+FriendList.propTypes = {
+  myFriends: PropTypes.array.isRequired,
+  query: PropTypes.string
+};
+
+export default FriendList;

@@ -1,7 +1,10 @@
 import React from 'react';
-import radium from 'radium';
+import jss from 'jss';
+import camelCase from 'jss-camel-case';
 
-const style = {
+jss.use(camelCase());
+
+const { classes } = jss.createStyleSheet({
   wrapper: {
     minHeight: '50vh',
     display: 'flex',
@@ -22,13 +25,15 @@ const style = {
   msg: {
     color: 'rgb(159, 58, 56)'
   }
-};
+}).attach();
 
-export default radium(() => (
-  <div style={style.wrapper}>
-    <div style={style.box}>
-      <div style={style.title}>Error</div>
-      <p style={style.msg}>We are sorry but something went wrong, please try again later.</p>
+const ErrMsg = () => (
+  <div className={classes.wrapper}>
+    <div className={classes.box}>
+      <div className={classes.title}>Error</div>
+      <p className={classes.msg}>We are sorry but something went wrong, please try again later.</p>
     </div>
   </div>
-));
+);
+
+export default ErrMsg;

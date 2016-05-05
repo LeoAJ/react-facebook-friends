@@ -26,19 +26,22 @@ const config = {
 
 class Spinner extends Component {
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.instance = new Spinjs(config);
     this.instance.spin(this.hello);
-  }
+  };
 
   render() {
     return (
-      <div ref={c => this.hello = c} style={{
-        height: '100vh',
-        opacity: '0.75',
-        backgroundColor: '#ffffff',
-        zIndex: '500'
-      }}>
+      <div
+        ref={c => this.hello = c}
+        style={{
+          height: '100vh',
+          opacity: '0.75',
+          backgroundColor: '#ffffff',
+          zIndex: '500'
+        }}
+      >
       </div>
     );
   }

@@ -1,26 +1,31 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { facebookBlue } from '../utils/constants';
-import radium from 'radium';
+import jss from 'jss';
+import camelCase from 'jss-camel-case';
 
-const style = {
+jss.use(camelCase());
+
+const { classes } = jss.createStyleSheet({
   wrapper: {
     justifyContent: 'center',
     flexWrap: 'wrap',
     display: 'flex',
-    padding: '0',
-    '@media (max-width: 590px)': {
-      flex: '1 1 100%'
-    }
+    padding: '0'
   },
   label: {
-    fontSize: '1.5em',
-    '@media (max-width: 590px)': {
-      display: 'none'
-    }
+    fontSize: '1.5em'
   },
   valueGroup: {
-    fontSize: '4em',
-    '@media (max-width: 590px)': {
+    fontSize: '4em'
+  },
+  '@media (max-width: 590px)': {
+    wrapper: {
+      flex: '1 1 100%'
+    },
+    label: {
+      display: 'none'
+    },
+    valueGroup: {
       fontSize: '1em',
       color: 'white',
       backgroundColor: facebookBlue,
@@ -28,14 +33,23 @@ const style = {
       borderRadius: '3px'
     }
   }
-};
+}).attach();
 
-export default radium(({ text, icon, top, value }) => (
-  <div style={style.wrapper}>
-    <div style={style.valueGroup}>
+const Label = ({ text, icon, top, value }) => (
+  <div className={classes.wrapper}>
+    <div className={classes.valueGroup}>
       <i className={icon}></i>
       <span>{value}</span>
     </div>
-    <div style={style.label}>{text}</div>
+    <div className={classes.label}>{text}</div>
   </div>
-));
+);
+
+Label.propTypes = {
+  text: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  top: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired
+};
+
+export default Label;

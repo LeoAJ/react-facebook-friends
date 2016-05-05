@@ -9,25 +9,35 @@ import Ribbon from './Ribbon';
 import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
-import radium from 'radium';
 import { getData } from '../utils/util';
+import jss from 'jss';
+
+const { classes } = jss.createStyleSheet({
+  wrapper: {
+    display: 'flex'
+  },
+  '@media (max-width: 1050px)': {
+    wrapper: {
+      'flex-wrap': 'wrap'
+    }
+  }
+}).attach();
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { status: 'loading' };
-  }
+  state = {
+    status: 'loading'
+  };
 
-  componentWillMount() {
+  componentWillMount = () => {
     document.body.style.backgroundColor = '#292929';
-  }
+  };
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     emitter.removeListener('search');
-  }
+  };
 
-  componentDidMount() {
+  componentDidMount = () => {
     emitter.on('search', query => this.setState({ query }));
 
     window.fbAsyncInit = () => {
@@ -61,35 +71,30 @@ class App extends Component {
       js.src = '//connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  }
+  };
 
-  _click() {
+  _click = () => {
     FB.login(() => {}, { scope: ['user_posts', 'user_friends'] });
-  }
+  };
 
-  mainRender() {
+  mainRender = () => {
     const { profile, myFriends, status, query } = this.state;
-
+    console.log(status);
     if (status === 'err') {
       return (<ErrMsg />);
     } else if (status === 'unknown' || status === 'not_authorized') {
       return <Login fBLogin={this._click} />;
     } else if (status === 'connected') {
       return (
-        <div style={{
-          display: 'flex',
-          '@media (max-width: 1050px)': {
-            flexWrap: 'wrap'
-          }
-        }}>
+        <div className={classes.wrapper}>
           <Profile {...profile} />
           <FriendList myFriends={myFriends} query={query} />
         </div>
       );
     }
-
+    
     return (<Spinner />);
-  }
+  };
 
   render() {
     return (
@@ -102,4 +107,4 @@ class App extends Component {
 
 }
 
-export default radium(App);
+export default App;

@@ -1,38 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { facebookBlue } from '../utils/constants';
-import radium from 'radium';
 import emitter from '../utils/emitter';
-import isEqual from 'lodash.isequal';
+import shallowCompare from 'react-addons-shallow-compare';
+import jss from 'jss';
+import camelCase from 'jss-camel-case';
 
-const style = {
+jss.use(camelCase());
+
+const { classes } = jss.createStyleSheet({
   profileStyle: {
     position: 'fixed',
     width: 'inherit',
     minHeight: '100vh',
     background: facebookBlue,
-    color: '#fff',
-    '@media (max-width: 1050px)': {
-      position: 'static',
-      width: 'auto',
-      minHeight: 'initial'
-    }
+    color: '#fff'
   },
   flexContainer: {
     flex: '1 1 0%',
-    width: '300px',
-    '@media (max-width: 1050px)': {
-      flex: '1 1 100%',
-      width: 'auto'
-    }
+    width: '300px'
   },
   headerStyle: {
     textAlign: 'center',
     top: 'auto',
     margin: '3em auto',
-    padding: '1em',
-    '@media (min-width: 48em)': {
-      margin: '50% 1em 0'
-    }
+    padding: '1em'
   },
   imgStyle: {
     border: '3px solid white',
@@ -54,8 +45,24 @@ const style = {
     width: '75%',
     borderRadius: '3px',
     border: '1px solid #aaa'
+  },
+  '@media (max-width: 1050px)': {
+    profileStyle: {
+      position: 'static',
+      width: 'auto',
+      minHeight: 'initial'
+    },
+    flexContainer: {
+      flex: '1 1 100%',
+      width: 'auto'
+    }
+  },
+  '@media (min-width: 48em)': {
+    headerStyle: {
+      margin: '50% 1em 0'
+    }
   }
-};
+}).attach();
 
 class Profile extends Component {
 
@@ -66,13 +73,13 @@ class Profile extends Component {
     total_count: PropTypes.number.isRequired
   };
 
-  changeHandler(e) {
+  changeHandler = (e) => {
     emitter.emit('search', e.target.value);
-  }
+  };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !isEqual(nextProps, this.props);
-  }
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return shallowCompare(this, nextProps);
+  };
 
   render() {
     const { name, link, url, total_count } = this.props;
@@ -80,21 +87,22 @@ class Profile extends Component {
       return total_count === 0
             ? null
             : <input
-                placeholder="Search friends"
-                style={style.searchInput}
-                onChange={this.changeHandler}
-                autoFocus />;
+              placeholder="Search friends"
+              className={classes.searchInput}
+              onChange={this.changeHandler}
+              autoFocus
+            />;
     };
 
     return (
-      <div style={style.flexContainer}>
-        <div style={style.profileStyle}>
-          <div style={style.headerStyle}>
+      <div className={classes.flexContainer}>
+        <div className={classes.profileStyle}>
+          <div className={classes.headerStyle}>
             <a target="_blank" href={link}>
-              <img src={url} alt="profile picture" style={style.imgStyle} />
+              <img src={url} alt="" className={classes.imgStyle} />
             </a>
-            <h1 style={style.nameStyle}>{name}</h1>
-            <h3 style={style.countStyle}>You have {total_count} friends on Facebook</h3>
+            <h1 className={classes.nameStyle}>{name}</h1>
+            <h3 className={classes.countStyle}>You have {total_count} friends on Facebook</h3>
             {renderSearchBox()}
           </div>
         </div>
@@ -103,4 +111,4 @@ class Profile extends Component {
   }
 }
 
-export default radium(Profile);
+export default Profile;

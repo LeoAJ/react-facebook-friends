@@ -15,7 +15,7 @@
     "test": "npm run lint && npm run karma",
     "test:dev": "npm run karma -- --watch",
     "start": "npm run dev",
-    "build": "NODE_ENV=production webpack -p --config webpack/webpack.config.babel.js --progress --colors",
+    "build": "webpack -p --config webpack/webpack.config.babel.js --progress --colors --define process.env.NODE_ENV='\"production\"'",
     "clean": "rimraf dist/",
     "deploy": "npm run clean && npm run build",
     "dev": "./node_modules/.bin/babel-node server.js"
@@ -83,10 +83,13 @@
     "yargs": "^4.1.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "jss": "^3.10.0",
+    "jss-camel-case": "^1.1.0",
     "lodash.isequal": "^4.0.0",
     "radium": "^0.15.3",
     "react": "^15.0.2",
+    "react-addons-shallow-compare": "^15.0.2",
     "react-dom": "^15.0.2",
     "reqwest": "^2.0.5",
     "spin.js": "^2.3.2"

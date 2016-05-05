@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Label from './Label';
-import radium from 'radium';
-import { POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
-import { facebookBlue } from '../utils/constants';
+import { facebookBlue, POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
+import jss from 'jss';
+import camelCase from 'jss-camel-case';
+
+jss.use(camelCase());
 
 const colors = {
   0: '#DB2828',
@@ -20,25 +22,7 @@ const colors = {
   12: '#1B1C1D'
 };
 
-const labelMap = {
-  c: {
-    text: 'Comments',
-    icon: 'fa fa-comments',
-    top: '63px'
-  },
-  l: {
-    text: 'Likes',
-    icon: 'fa fa-thumbs-o-up',
-    top: '26px'
-  },
-  p: {
-    text: 'Posts',
-    icon: 'fa fa-pencil',
-    top: '100px'
-  }
-};
-
-const style = {
+const { classes } = jss.createStyleSheet({
   anchor: {
     minWidth: '300px',
     borderRadius: '3px',
@@ -93,22 +77,54 @@ const style = {
       alignItems: 'center'
     }
   }
+}).attach();
+
+const labelMap = {
+  c: {
+    text: 'Comments',
+    icon: 'fa fa-comments',
+    top: '63px'
+  },
+  l: {
+    text: 'Likes',
+    icon: 'fa fa-thumbs-o-up',
+    top: '26px'
+  },
+  p: {
+    text: 'Posts',
+    icon: 'fa fa-pencil',
+    top: '100px'
+  }
 };
 
-export default radium(({ name, rank, link, url, LIKE, COMMENT, POST }) => (
-    <a target="_blank" href={link} style={style.anchor}>
-      <div style={{
-        ...style.rank,
-        backgroundColor: colors[(rank - 1) % 10]
-      }}>{rank}</div>
-      <div style={style.imgWrapper}>
-        <img src={url} alt={name} style={style.img} />
-        <div style={style.name}>{name}</div>
-      </div>
-      <div style={style.labelWrapper}>
-        <Label {...labelMap.l} value={LIKE} />
-        <Label {...labelMap.c} value={COMMENT} />
-        <Label {...labelMap.p} value={POST} />
-      </div>
-    </a>
-));
+const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
+  <a target="_blank" href={link} className={classes.anchor}>
+    <div
+      style={{ backgroundColor: colors[(rank - 1) % 10] }}
+      className={classes.rank}
+    >
+      {rank}
+    </div>
+    <div className={classes.imgWrapper}>
+      <img src={url} alt={name} className={classes.img} />
+      <div className={classes.name}>{name}</div>
+    </div>
+    <div className={classes.labelWrapper}>
+      <Label {...labelMap.l} value={LIKE} />
+      <Label {...labelMap.c} value={COMMENT} />
+      <Label {...labelMap.p} value={POST} />
+    </div>
+  </a>
+);
+
+FriendItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  rank: PropTypes.number.isRequired,
+  link: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  LIKE: PropTypes.number.isRequired,
+  COMMENT: PropTypes.number.isRequired,
+  POST: PropTypes.number.isRequired
+};
+
+export default FriendItem;
