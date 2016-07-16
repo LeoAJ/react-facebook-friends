@@ -1,22 +1,19 @@
-import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { shallow } from 'enzyme';
 import Ribbon from '../../src/components/Ribbon';
-import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Ribbon', () => {
-  let _component, _rendered;
+  let _component;
 
   beforeEach(() => {
-    _component = shallowRender(Ribbon);
-    _rendered = renderIntoDocument(Ribbon);
+    _component = shallow(<Ribbon />);
   });
 
   it('Should render a parent <div>', () => {
-    expect(_component.type).to.equal('div');
+    expect(_component.type()).to.eql('div');
   });
 
   it('Should render an anchor tag and show "Fork me on Github"', () => {
-    const anchor = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'a');
-    expect(anchor).to.exist;
-    expect(anchor.textContent).to.match(/Fork me on Github/);
+    expect(_component.find('a').text()).to.equal('Fork me on Github');
   });
 });
