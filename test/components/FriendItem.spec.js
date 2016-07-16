@@ -1,9 +1,10 @@
-import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { shallow } from 'enzyme';
 import FriendItem from '../../src/components/FriendItem';
-import { shallowRender, renderIntoDocument } from '../testHelper';
+import Label from '../../src/components/Label';
 
 describe('(Components) FriendItem', () => {
-  let _component, _rendered;
+  let _component;
   const _props = {
     name: 'Leo Hsieh',
     rank: 3,
@@ -15,33 +16,18 @@ describe('(Components) FriendItem', () => {
   };
 
   beforeEach(() => {
-    _component = shallowRender(FriendItem, _props);
-    _rendered = renderIntoDocument(FriendItem, _props);
+    _component = shallow(<FriendItem {..._props} />);
   });
 
-  it('Should render a parent <div>', () => {
-    expect(_component.type).to.equal('a');
-  });
-
-  it('Should render an anchor tag', () => {
-    const anchor = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'a');
-    expect(anchor).to.exist;
+  it('Should render a parent <a>', () => {
+    expect(_component.type()).to.eql('a');
   });
 
   it('Should render an image', () => {
-    const img = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'img');
-    expect(img).to.exist;
+    expect(_component.find('img')).to.have.length(1);
   });
 
-  it('Should render a <div> for rank', () => {
-    const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
-    expect(div[0]).to.exist;
-    expect(div[0].textContent).to.match(/3/);
-  });
-
-  it('Should render a <div> for name', () => {
-    const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
-    expect(div[2]).to.exist;
-    expect(div[2].textContent).to.match(/Leo Hsieh/);
+  it('Should render 3 Label component', () => {
+    expect(_component.find(Label)).to.have.length(3);
   });
 });

@@ -1,38 +1,36 @@
-import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { shallow } from 'enzyme';
 import Login from '../../src/components/Login';
-import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Login', () => {
-  let _component, _rendered;
-
-  const _spy = { fBLogin: sinon.spy() },
-        _props = { fBLogin: _spy.fBLogin };
+  let _component;
+  let sandbox;
+  let spy;
 
   beforeEach(() => {
-    _component = shallowRender(Login, _props);
-    _rendered = renderIntoDocument(Login, _props);
+    sandbox = sinon.sandbox.create();
+    spy = sandbox.spy();
+    _component = shallow(<Login fBLogin={spy} />);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
   });
 
   it('Should render a parent <div>', () => {
-    expect(_component.type).to.equal('div');
+    expect(_component.type()).to.eql('div');
   });
 
   it('Should render a <h4> as a title', () => {
-    const h4 = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'h4');
-    expect(h4).to.exist;
-    expect(h4.textContent).to.match(/Facebook required your permission to do further action/);
+    expect(_component.find('h4').text()).to.equal('Facebook required your permission to do further action');
   });
 
   it('Should render a <button>', () => {
-    const button = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'button');
-    expect(button).to.exist;
-    expect(button.textContent).to.match(/Agree/);
+    expect(_component.find('button').text()).to.equal('Agree');
   });
 
   it('Should execute "fBLogin" function while button get clicked', () => {
-    const button = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'button');
-    _spy.fBLogin.should.have.not.been.called;
-    TestUtils.Simulate.click(button);
-    _spy.fBLogin.should.have.been.called;
+    _component.find('button').simulate('click');
+    expect(spy).to.have.been.calledOnce;
   });
 });

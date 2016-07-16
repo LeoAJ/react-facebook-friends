@@ -1,9 +1,9 @@
-import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { shallow } from 'enzyme';
 import Label from '../../src/components/Label';
-import { shallowRender, renderIntoDocument } from '../testHelper';
 
 describe('(Components) Label', () => {
-  let _component, _rendered;
+  let _component;
   const _props = {
     text: 'Likes',
     icon: 'fa fa-thumbs-o-up',
@@ -12,28 +12,18 @@ describe('(Components) Label', () => {
   };
 
   beforeEach(() => {
-    _component = shallowRender(Label, _props);
-    _rendered = renderIntoDocument(Label, _props);
+    _component = shallow(<Label {..._props} />);
   });
 
   it('Should render a parent <div>', () => {
-    expect(_component.type).to.equal('div');
+    expect(_component.type()).to.eql('div');
   });
 
   it('Should render an icon', () => {
-    const icon = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'i');
-    expect(icon).to.exist;
+    expect(_component.find('i')).to.have.length(1);
   });
 
   it('Should render a span', () => {
-    const span = TestUtils.findRenderedDOMComponentWithTag(_rendered, 'span');
-    expect(span).to.exist;
-    expect(span.textContent).to.match(/12/);
-  });
-
-  it('Should render a div for text', () => {
-    const div = TestUtils.scryRenderedDOMComponentsWithTag(_rendered, 'div');
-    expect(div[2]).to.exist;
-    expect(div[2].textContent).to.match(/Likes/);
+    expect(_component.find('span').text()).to.equal('12');
   });
 });
