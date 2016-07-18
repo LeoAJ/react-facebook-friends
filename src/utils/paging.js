@@ -3,13 +3,11 @@ import getFeedInstance from '../utils/singleton';
 
 const feedInstance = getFeedInstance();
 
-function getPagingData(url) {
-  return reqwest({ url });
-}
+const getPagingData = (url) => reqwest({ url });
 
-function iterateData(data, type) {
+const iterateData = (data, type) => {
   data.forEach(item => feedInstance.add({ user: item.from || item, type }));
-}
+};
 
 export async function collectDataWithPaging({ data, paging }, type) {
   try {
