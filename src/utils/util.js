@@ -4,36 +4,38 @@ import getFeedInstance from './singleton';
 import { collectDataWithPaging } from './paging';
 import { POST, LIKE, COMMENT } from './constants';
 
+async function generatePromiseForFeed(item) {
+  const { taggedIds, feedInstance } = this;
+  return new Promise((resolve, reject) => {
+    (async () => {
+      try {
+        if (taggedIds.indexOf(item.id) < 0) {
+          // count likes
+          item.likes && await collectDataWithPaging(item.likes, LIKE);
+
+          // count comments
+          item.comments && await collectDataWithPaging(item.comments, COMMENT);
+
+          // count posts
+          feedInstance.add({
+            feedId: item.id,
+            user: item.from,
+            type: POST
+          });
+        }
+
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    })();
+  });
+}
+
 // return list of promises
 function analyze({ feed = { data: [] }, tagged = { data: [] } }, feedInstance) {
   const taggedIds = tagged.data.map(tag => tag.id);
-
-  return feed.data.map((item) => {
-    return new Promise((resolve, reject) => {
-      (async () => {
-        try {
-          if (taggedIds.indexOf(item.id) < 0) {
-            // count likes
-            item.likes && await collectDataWithPaging(item.likes, LIKE);
-
-            // count comments
-            item.comments && await collectDataWithPaging(item.comments, COMMENT);
-
-            // count posts
-            feedInstance.add({
-              feedId: item.id,
-              user: item.from,
-              type: POST
-            });
-          }
-
-          resolve();
-        } catch (e) {
-          reject(e);
-        }
-      })();
-    });
-  });
+  return feed.data.map(generatePromiseForFeed.bind({ taggedIds, feedInstance }));
 }
 
 export function getData() {

@@ -73,13 +73,9 @@ class Profile extends Component {
     total_count: PropTypes.number.isRequired
   };
 
-  changeHandler = (e) => {
-    emitter.emit('search', e.target.value);
-  };
+  changeHandler = (e) => emitter.emit('search', e.target.value);
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return shallowCompare(this, nextProps);
-  };
+  shouldComponentUpdate = (nextProps) => shallowCompare(this, nextProps);
 
   render() {
     const { name, link, url, total_count } = this.props;

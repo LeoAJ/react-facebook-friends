@@ -62,9 +62,7 @@ class Feed {
   }
 
   // sort and only output first 25 items
-  sortByScore() {
-    return this.info.sort((a, b) => b.score - a.score).slice(0, MAX_OUTPUT);
-  }
+  sortByScore = () => this.info.sort((a, b) => b.score - a.score).slice(0, MAX_OUTPUT);
 
   set userId(currentUserId) {
     this.currentUserId = currentUserId;
