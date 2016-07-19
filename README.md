@@ -25,6 +25,8 @@ To know more detail, please read my [post](http://leoj.js.org/personal/React-iTu
 
 Register a Facebook App first [here](https://developers.facebook.com/docs/apps/register), and replace your app ID [here](https://github.com/LeoAJ/react-facebook-friends/blob/master/config/index.js#L2).
 
+For this app, you will need to require `email`, `public_profile`, `user_friends` and `user_posts` those permission from Facebook in order to run the app.
+
 Then do,
 
 ```
