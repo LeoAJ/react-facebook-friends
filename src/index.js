@@ -1,8 +1,7 @@
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import App from './components/App';
-
-import 'babel-polyfill';
 
 // import CSS
 import '../vendor/css/gh-fork-ribbon.css';

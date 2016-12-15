@@ -1,0 +1,26 @@
+.nodata {
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  min-height: 100vh;
+}
+
+.wrapper {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 1050px) {
+  .wrapper {
+    flex: 1 1 100%;
+  }
+
+  .nodata {
+    min-height: auto;
+  }
+}

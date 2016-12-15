@@ -1,0 +1,9 @@
+.ribbon-wrapper {
+  display: block;
+}
+
+@media (max-width: 48em) {
+  .ribbon-wrapper {
+    display: none;
+  }
+}

@@ -1,9 +1,8 @@
 /* global __dirname */
 
+import path from 'path';
 import webpack from 'webpack';
 import webpackConfig from './_base';
-
-import path from 'path';
 
 webpackConfig.devtool = 'source-map';
 

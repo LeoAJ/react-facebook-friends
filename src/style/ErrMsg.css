@@ -1,0 +1,23 @@
+.wrapper {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  border-radius: 3px;
+  background: #FFF6F6;
+  padding: 15px;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  color: #912D2B;
+  font-weight: bold
+}
+
+.msg {
+  color: rgb(159, 58, 56);
+}

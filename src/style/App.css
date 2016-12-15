@@ -1,0 +1,9 @@
+.app-wrapper {
+  display: flex;
+}
+
+@media (max-width: 1050px) {
+  .app-wrapper {
+    flex-wrap: wrap;
+  }
+}

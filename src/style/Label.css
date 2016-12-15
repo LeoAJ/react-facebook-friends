@@ -1,0 +1,32 @@
+.label-wrapper {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  padding: 0;
+}
+
+.label-text {
+  font-size: 1.5em;
+}
+
+.label-valueGroup {
+  font-size: 4em;
+}
+
+@media (max-width: 590px) {
+  .label-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .label-text {
+    display: none;
+  }
+
+  .label-valueGroup {
+    font-size: 1em;
+    color: white;
+    background: rgb(58, 87, 149);
+    padding: 3px;
+    border-radius: 3px;
+  }
+}
