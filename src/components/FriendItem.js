@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 import Label from './Label';
-import { facebookBlue, POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
-import jss from 'jss';
-import camelCase from 'jss-camel-case';
+import { POST as pType, LIKE as lType, COMMENT as cType } from '../utils/constants';
+import '../style/FriendItem.css';
 
-jss.use(camelCase());
 
 const colors = {
   0: '#DB2828',
@@ -21,63 +19,6 @@ const colors = {
   11: '#767676',
   12: '#1B1C1D'
 };
-
-const { classes } = jss.createStyleSheet({
-  anchor: {
-    minWidth: '300px',
-    borderRadius: '3px',
-    marginTop: '5px',
-    marginBottom: '5px',
-    backgroundColor: 'white',
-    maxWidth: '680px',
-    padding: '1px 15px',
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    minHeight: '150px',
-    justifyContent: 'space-around',
-    color: 'black',
-    ':hover': {
-      backgroundColor: '#f7f7f7'
-    }
-  },
-  rank: {
-    textAlign: 'center',
-    fontWeight: '400',
-    fontSize: '4em',
-    width: '80px',
-    display: 'inline-block',
-    color: 'white',
-    borderRadius: '50%'
-  },
-  imgWrapper: {
-    padding: '10px'
-  },
-  img: {
-    border: '1px solid rgb(59, 89, 152)',
-    borderRadius: '3px'
-  },
-  name: {
-    textAlign: 'center',
-    color: facebookBlue,
-    fontWeight: 'bold',
-    fontSize: '0.8em'
-  },
-  label: {
-    textAlign: 'center'
-  },
-  value: {
-    fontSize: '6em'
-  },
-  labelWrapper: {
-    display: 'flex',
-    '@media (max-width: 590px)': {
-      flexWrap: 'wrap',
-      minHeight: 'inherit',
-      alignItems: 'center'
-    }
-  }
-}).attach();
 
 const labelMap = {
   c: {
@@ -98,18 +39,18 @@ const labelMap = {
 };
 
 const FriendItem = ({ name, rank, link, url, LIKE, COMMENT, POST }) => (
-  <a target="_blank" href={link} className={classes.anchor}>
+  <a target="_blank" href={link} className="anchor" rel="noopener noreferrer">
     <div
       style={{ backgroundColor: colors[(rank - 1) % 10] }}
-      className={classes.rank}
+      className="rank"
     >
       {rank}
     </div>
-    <div className={classes.imgWrapper}>
-      <img src={url} alt={name} className={classes.img} />
-      <div className={classes.name}>{name}</div>
+    <div className="imgWrapper">
+      <img src={url} alt={name} className="img" />
+      <div className="name">{name}</div>
     </div>
-    <div className={classes.labelWrapper}>
+    <div className="labelWrapper">
       <Label {...labelMap.l} value={LIKE} />
       <Label {...labelMap.c} value={COMMENT} />
       <Label {...labelMap.p} value={POST} />

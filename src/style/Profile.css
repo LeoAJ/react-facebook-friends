@@ -1,0 +1,63 @@
+.profileStyle {
+  position: fixed;
+  width: inherit;
+  min-height: 100vh;
+  background: rgb(58, 87, 149);
+  color: #fff;
+}
+
+.flexContainer {
+  flex: 1 1 0%;
+  width: 300px;
+}
+
+.headerStyle {
+  text-align: center;
+  top: auto;
+  margin: 3em auto;
+  padding: 1em;
+}
+
+.imgStyle {
+  border: 3px solid white;
+  border-radius: 3px;
+}
+
+.nameStyle {
+  margin: 0;
+}
+
+.countStyle {
+  margin: 0;
+  color: rgb(176, 202, 219);
+  font-weight: 300;
+}
+
+.searchInput {
+  color: black;
+  margin-top: 5px;
+  box-sizing: border-box;
+  padding: .5em;
+  width: 75%;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+}
+
+@media (max-width: 1050px) {
+  .profileStyle {
+    position: static;
+    width: auto;
+    min-height: initial;
+  }
+
+  .flexContainer {
+    flex: 1 1 100%;
+    width: auto;
+  }
+}
+
+@media (min-width: 48em) {
+  .headerStyle {
+    margin: 50% 1em 0;
+  }
+}

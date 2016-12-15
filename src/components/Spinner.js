@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { facebookBlue } from '../utils/constants';
 import Spinjs from 'spin.js';

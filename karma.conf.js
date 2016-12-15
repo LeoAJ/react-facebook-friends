@@ -21,6 +21,10 @@ module.exports = function (config) {
           loader: 'babel',
           exclude: path.resolve(__dirname, 'node_modules')
         }, {
+          test: /\.css$/,
+          loader: 'style!css',
+          exclude: path.resolve(__dirname, 'node_modules')
+        }, {
           test: /\.json$/,
           loader: 'json',
         },

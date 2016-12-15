@@ -1,0 +1,33 @@
+.btn {
+  background: #55acee;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  color: #55acee;
+}
+
+.main {
+  text-align: center;
+  background: white;
+  padding: 15px 5px;
+  border-radius: 3px;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1em;
+  }
+
+  .main {
+    font-size: .9em;
+  }
+}

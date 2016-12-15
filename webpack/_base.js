@@ -1,6 +1,7 @@
 /* global __dirname */
 
 import path from 'path';
+import autoprefixer from 'autoprefixer';
 
 const webpackConfig = {
   target: 'web',
@@ -10,6 +11,7 @@ const webpackConfig = {
     path: path.resolve(__dirname, '../', 'dist/'),
     filename: 'bundle.js'
   },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   module: {
     loaders: [{
         test: /\.js$/,
@@ -17,7 +19,7 @@ const webpackConfig = {
         exclude: /node_modules/
       }, {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style!css!postcss',
         exclude: /node_modules/
       }, {
         test: /\.(woff|woff2|ttf|svg)$/,

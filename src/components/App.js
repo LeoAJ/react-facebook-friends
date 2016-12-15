@@ -10,18 +10,7 @@ import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
 import { getData } from '../utils/util';
-import jss from 'jss';
-
-const { classes } = jss.createStyleSheet({
-  wrapper: {
-    display: 'flex'
-  },
-  '@media (max-width: 1050px)': {
-    wrapper: {
-      'flex-wrap': 'wrap'
-    }
-  }
-}).attach();
+import '../style/App.css';
 
 class App extends Component {
 
@@ -85,7 +74,7 @@ class App extends Component {
       return <Login fBLogin={this._click} />;
     } else if (status === 'connected') {
       return (
-        <div className={classes.wrapper}>
+        <div className="app-wrapper">
           <Profile {...profile} />
           <FriendList myFriends={myFriends} query={query} />
         </div>

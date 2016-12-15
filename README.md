@@ -21,6 +21,12 @@ To know more detail, please read my [post](http://leoj.js.org/personal/React-iTu
 2. `cd react-facebook-friends`
 3. `npm install`
 
+or use [yarn](https://yarnpkg.com)
+
+```
+yarn
+```
+
 ## Dev
 
 Register a Facebook App first [here](https://developers.facebook.com/docs/apps/register), and replace your app ID [here](https://github.com/LeoAJ/react-facebook-friends/blob/master/config/index.js#L2).

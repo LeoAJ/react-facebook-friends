@@ -41,10 +41,10 @@ class Feed {
       score = LIKE_POINT;
     }
 
-    if (this.key.hasOwnProperty(id)) {
+    if (id in this.key) {
       // existed
       this.info[this.key[id]].score += score;
-      this.info[this.key[id]][type]++;
+      this.info[this.key[id]][type] += 1;
     } else {
       // new
       this.key[id] = this.info.length;
