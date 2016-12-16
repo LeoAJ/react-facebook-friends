@@ -1,5 +1,4 @@
 import React from 'react';
-import jss from 'jss';
 import '../style/ErrMsg.css';
 
 const ErrMsg = () => (

@@ -67,7 +67,6 @@ npm test
 * ES6
 * ES7 (async/await)
 * [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
-* Inline CSS [(jss)](https://github.com/jsstyles/jss)
 * Flexbox
 * Webpack
 * Eslint 2.0
