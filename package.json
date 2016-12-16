@@ -91,7 +91,6 @@
     "react": "^15.0.2",
     "react-addons-shallow-compare": "^15.0.2",
     "react-dom": "^15.0.2",
-    "reqwest": "^2.0.5",
-    "spin.js": "^2.3.2"
+    "reqwest": "^2.0.5"
   }
 }

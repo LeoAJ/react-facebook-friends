@@ -6,11 +6,11 @@ import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
 import config from '../../config';
 import Ribbon from './Ribbon';
-import Spinner from './Spinner';
 import Login from './Login';
 import emitter from '../utils/emitter';
 import { getData } from '../utils/util';
 import '../style/App.css';
+import '../style/spinner.css';
 
 class App extends Component {
 
@@ -80,7 +80,11 @@ class App extends Component {
         </div>
       );
     }
-    return (<Spinner />);
+    return (
+      <div className="spinner-wrapper">
+        <div className="rotating-plane" />
+      </div>
+    );
   };
 
   render() {

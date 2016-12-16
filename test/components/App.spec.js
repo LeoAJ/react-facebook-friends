@@ -4,7 +4,6 @@ import App from '../../src/components/App';
 import Ribbon from '../../src/components/Ribbon';
 import ErrMsg from '../../src/components/ErrMsg';
 import Login from '../../src/components/Login';
-import Spinner from '../../src/components/Spinner';
 import Profile from '../../src/components/Profile';
 import FriendList from '../../src/components/FriendList';
 
@@ -17,10 +16,6 @@ describe('(Components) App', () => {
 
   it('Should render Ribbon', () => {
     expect(_component.find(Ribbon)).to.have.length(1);
-  });
-
-  it('By default should render Shinner component', () => {
-    expect(_component.find(Spinner)).to.have.length(1);
   });
 
   it('Should render Err component if state is err', () => {
