@@ -1,7 +1,9 @@
+// @flow
+
 import React, { PropTypes } from 'react';
 import '../style/Login.css';
 
-const Login = ({ fBLogin }) => (
+const Login = ({ fBLogin }: { fBLogin: Function }) => (
   <div className="wrapper">
     <div>
       <h2 className="title">Checkout who are you best friends on Facebook</h2>
@@ -12,9 +14,5 @@ const Login = ({ fBLogin }) => (
     </div>
   </div>
 );
-
-Login.propTypes = {
-  fBLogin: PropTypes.func.isRequired
-};
 
 export default Login;

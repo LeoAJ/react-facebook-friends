@@ -3,18 +3,20 @@ import shallowCompare from 'react-addons-shallow-compare';
 import emitter from '../utils/emitter';
 import '../style/Profile.css';
 
+type ProfileProp = {
+  name: string,
+  link: string,
+  url: string,
+  total_count: number
+};
+
 class Profile extends Component {
 
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    total_count: PropTypes.number.isRequired
-  };
+  props: ProfileProp;
 
-  changeHandler = e => emitter.emit('search', e.target.value);
+  changeHandler = (e: SyntheticInputEvent): void => emitter.emit('search', e.target.value); // eslint-disable-line no-undef
 
-  shouldComponentUpdate = nextProps => shallowCompare(this, nextProps);
+  shouldComponentUpdate = (nextProps: Object): boolean => shallowCompare(this, nextProps);
 
   render() {
     const { name, link, url, total_count } = this.props;

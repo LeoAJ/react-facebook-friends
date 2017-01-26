@@ -1,34 +1,41 @@
 /* global FB */
-
 import React, { Component } from 'react';
 import Profile from './Profile';
 import FriendList from './FriendList';
 import ErrMsg from './ErrMsg';
-import config from '../../config';
 import Ribbon from './Ribbon';
 import Login from './Login';
+import config from '../../config';
 import emitter from '../utils/emitter';
 import { getData } from '../utils/util';
 import '../style/App.css';
 import '../style/spinner.css';
+import { apiConfig } from '../utils/apiConfig';
+import { APP_BACKGROUND_COLOR } from '../utils/constants';
+
+type AppState = {
+  status: string,
+  profile?: Object,
+  myFriends?: Object,
+  query?: string
+};
 
 class App extends Component {
 
-  state = {
+  state: AppState = {
     status: 'loading'
   };
 
-  componentWillMount = () => {
-    document.body.style.backgroundColor = '#292929';
-  };
+  componentWillMount() {
+    document.body.style.backgroundColor = APP_BACKGROUND_COLOR;
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     emitter.removeListener('search');
-  };
+  }
 
-  componentDidMount = () => {
+  componentDidMount() {
     emitter.on('search', query => this.setState({ query }));
-
     window.fbAsyncInit = () => {
       FB.init(config);
 
@@ -52,21 +59,14 @@ class App extends Component {
       });
     };
 
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      const js = d.createElement(s); js.id = id;
-      js.src = '//connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  };
+    apiConfig();
+  }
 
-  _click = () => {
-    FB.login(() => {}, { scope: ['user_posts', 'user_friends'] });
-  };
+  _click(): void {
+    FB.login(_ => {}, { scope: ['user_posts', 'user_friends'] });
+  }
 
-  mainRender = () => {
+  mainRender() {
     const { profile, myFriends, status, query } = this.state;
     if (status === 'err') {
       return (<ErrMsg />);
@@ -85,7 +85,7 @@ class App extends Component {
         <div className="rotating-plane" />
       </div>
     );
-  };
+  }
 
   render() {
     return (
