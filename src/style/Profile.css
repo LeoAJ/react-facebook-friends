@@ -55,9 +55,3 @@
     width: auto;
   }
 }
-
-@media (min-width: 48em) {
-  .headerStyle {
-    margin: 50% 1em 0;
-  }
-}

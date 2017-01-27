@@ -69,6 +69,7 @@ npm test
 * [react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)
 * Flexbox
 * Webpack
+* Flow
 * Eslint 2.0
 * Karma
 * Facebook API

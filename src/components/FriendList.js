@@ -1,18 +1,26 @@
+// @flow
 /* eslint react/forbid-prop-types: 0 */
 import React, { PropTypes } from 'react';
 import FriendItem from './FriendItem';
 import { MAX_OUTPUT } from '../utils/constants';
 import '../style/FriendList.css';
+import type { FriendItemProp } from '../type';
 
-const emptyResult = (hasFriends, query) => {
-  return (
-    <div className="nodata">
-      {hasFriends ? `No results for: "${query}"` : 'No friends to show'}
-    </div>
-  );
+type FriendListProp = {
+  myFriends: Array<FriendItemProp>,
+  query: string
 };
 
-const renderFriends = ({ myFriends, query }) => {
+const emptyResult = (hasFriends: boolean, query: string) => (
+  <div className="nodata">
+    {hasFriends ? `No results for: "${query}"` : 'No friends to show'}
+  </div>
+);
+
+const FriendList = ({
+  myFriends,
+  query
+}: FriendListProp) => {
   const result = myFriends.reduce((prev, curr, i) => {
     if (curr.name.match(new RegExp(query, 'i'))) {
       prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
@@ -20,18 +28,12 @@ const renderFriends = ({ myFriends, query }) => {
 
     return prev;
   }, []);
-  return result.length > 0 ? result : emptyResult(!!myFriends.length, query);
-};
 
-const FriendList = props => (
-  <div className="wrapper">
-    {renderFriends(props)}
-  </div>
-);
-
-FriendList.propTypes = {
-  myFriends: PropTypes.array.isRequired,
-  query: PropTypes.string
+  return (
+    <div className="wrapper">
+      {result.length ? result : emptyResult(!!myFriends.length, query)}
+    </div>
+  );
 };
 
 export default FriendList;
