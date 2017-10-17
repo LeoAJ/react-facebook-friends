@@ -23,7 +23,7 @@ const FriendList = ({
 }: FriendListProp) => {
   const result = myFriends.reduce((prev, curr, i) => {
     if (curr.name.match(new RegExp(query, 'i'))) {
-      prev.push(<FriendItem key={i} rank={i + 1} {...curr} />);
+      prev.push(<FriendItem key={curr.id} rank={i + 1} {...curr} />);
     }
 
     return prev;

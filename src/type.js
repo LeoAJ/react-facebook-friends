@@ -3,7 +3,14 @@ export type FriendItemProp = {
   rank: number,
   link: string,
   url: string,
-  LIKE: string,
-  COMMENT: string,
-  POST: string
+  LIKE: number,
+  COMMENT: number,
+  POST: number
+};
+
+export type AppState = {
+  status: string,
+  profile?: Object,
+  myFriends?: Object,
+  query?: string
 };

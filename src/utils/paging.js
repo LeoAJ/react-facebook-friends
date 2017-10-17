@@ -5,9 +5,7 @@ const feedInstance = getFeedInstance();
 
 const getPagingData = url => reqwest({ url });
 
-const iterateData = (data, type) => {
-  data.forEach(item => feedInstance.add({ user: item.from || item, type }));
-};
+const iterateData = (data, type) => data.forEach(item => feedInstance.add({ user: item.from || item, type }));
 
 export async function collectDataWithPaging({ data, paging }, type) {
   try {

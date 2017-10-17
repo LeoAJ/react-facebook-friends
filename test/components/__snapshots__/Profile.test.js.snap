@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile component should renders correctly 1`] = `
+<div
+  className="flexContainer"
+>
+  <div
+    className="profileStyle"
+  >
+    <div
+      className="headerStyle"
+    >
+      <a
+        href="link"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="imgStyle"
+          src="url"
+        />
+      </a>
+      <h1
+        className="nameStyle"
+      >
+        test
+      </h1>
+      <h3
+        className="countStyle"
+      >
+        You have 
+        1
+         friends on Facebook
+      </h3>
+      <input
+        className="searchInput"
+        onChange={[Function]}
+        placeholder="Search friends"
+      />
+    </div>
+  </div>
+</div>
+`;
