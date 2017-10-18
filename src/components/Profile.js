@@ -1,22 +1,18 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React from 'react';
 import emitter from '../utils/emitter';
 import '../style/Profile.css';
 
-type ProfileProp = {
+type Props = {
   name: string,
   link: string,
   url: string,
   total_count: number
 };
 
-class Profile extends Component {
+class Profile extends React.PureComponent<Props, {}> {
+  props: Props;
 
-  props: ProfileProp;
-
-  changeHandler = (e: SyntheticInputEvent): void => emitter.emit('search', e.target.value); // eslint-disable-line no-undef
-
-  shouldComponentUpdate = (nextProps: Object): boolean => shallowCompare(this, nextProps);
+  changeHandler = (e: Object): void => emitter.emit('search', e.target.value); // eslint-disable-line no-undef
 
   render() {
     const { name, link, url, total_count } = this.props;
@@ -27,7 +23,6 @@ class Profile extends Component {
               placeholder="Search friends"
               className="searchInput"
               onChange={this.changeHandler}
-              autoFocus
             />;
     };
 

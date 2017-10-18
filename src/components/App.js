@@ -12,16 +12,9 @@ import '../style/App.css';
 import '../style/spinner.css';
 import { apiConfig } from '../utils/apiConfig';
 import { APP_BACKGROUND_COLOR } from '../utils/constants';
-
-type AppState = {
-  status: string,
-  profile?: Object,
-  myFriends?: Object,
-  query?: string
-};
+import type { AppState } from '../type';
 
 class App extends Component {
-
   state: AppState = {
     status: 'loading'
   };
@@ -40,25 +33,17 @@ class App extends Component {
       FB.init(config);
 
       // show login
-      FB.getLoginStatus(
-        response => response.status !== 'connected' && this.setState({ status: response.status })
-      );
+      FB.getLoginStatus(response => response.status !== 'connected' && this.setState({ status: response.status }));
 
-      FB.Event.subscribe('auth.authResponseChange', (response) => {
-        // start spinner
-        this.setState({ status: 'loading' });
-
-        (async () => {
-          try {
-            const { profile, myFriends } = await getData();
-            this.setState({ status: response.status, profile, myFriends });
-          } catch (e) {
-            this.setState({ status: 'err' });
-          }
-        })();
+      FB.Event.subscribe('auth.authResponseChange', async response => {
+        try {
+          const { profile, myFriends } = await getData();
+          this.setState({ status: response.status, profile, myFriends });
+        } catch (e) {
+          this.setState({ status: 'err' });
+        }
       });
     };
-
     apiConfig();
   }
 
@@ -67,7 +52,12 @@ class App extends Component {
   }
 
   mainRender() {
-    const { profile, myFriends, status, query } = this.state;
+    const {
+      profile,
+      myFriends,
+      status,
+      query
+    } = this.state;
     if (status === 'err') {
       return (<ErrMsg />);
     } else if (status === 'unknown' || status === 'not_authorized') {
@@ -95,7 +85,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;

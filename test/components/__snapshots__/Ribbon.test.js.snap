@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ribbon component should renders correctly 1`] = `
+<div
+  className="github-fork-ribbon-wrapper left fixed ribbon-wrapper"
+>
+  <div
+    className="github-fork-ribbon"
+  >
+    <a
+      href="https://github.com/LeoAJ"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Fork me on Github
+    </a>
+  </div>
+</div>
+`;

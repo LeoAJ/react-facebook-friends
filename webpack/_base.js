@@ -11,25 +11,39 @@ const webpackConfig = {
     path: path.resolve(__dirname, '../', 'dist/'),
     filename: 'bundle.js'
   },
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   module: {
-    loaders: [{
-        test: /\.js$/,
-        loaders: ['babel'],
-        exclude: /node_modules/
-      }, {
-        test: /\.css$/,
-        loader: 'style!css!postcss',
-        exclude: /node_modules/
-      }, {
-        test: /\.(woff|woff2|ttf|svg)$/,
-        loader: 'url?limit=100000',
-        exclude: /node_modules/
-      }, {
-        test: /\.(eot|png)$/,
-        loader: 'file',
-        exclude: /node_modules/
-      }]
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [
+        'babel-loader'
+      ]
+    }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: _ => [autoprefixer({ browsers: ['last 2 versions'] })]
+          }
+        }
+      ]
+    }, {
+      test: /\.(woff|woff2|ttf|svg)$/,
+      exclude: /node_modules/,
+      use: [
+        'url-loader?limit=100000'
+      ]
+    }, {
+      test: /\.(eot|png)$/,
+      exclude: /node_modules/,
+      use: [
+        'file-loader'
+      ]
+    }]
   }
 };
 

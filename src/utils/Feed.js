@@ -9,7 +9,6 @@ import {
 } from './constants';
 
 class Feed {
-
   constructor(currentUserId) {
     this.currentUserId = currentUserId;
     this.key = {};
@@ -67,7 +66,6 @@ class Feed {
   set userId(currentUserId) {
     this.currentUserId = currentUserId;
   }
-
 }
 
 export default Feed;

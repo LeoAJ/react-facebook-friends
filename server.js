@@ -8,10 +8,10 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack/webpack.config.dev';
 
-const app = express(),
-      compiler = webpack(config),
-      host = 'localhost',
-      port = 3000;
+const app = express();
+const compiler = webpack(config);
+const host = 'localhost';
+const port = 3000;
 
 app.use(webpackDevMiddleware(compiler, {
   stats: {

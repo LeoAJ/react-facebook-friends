@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FriendItem component should renders correctly 1`] = `
+<a
+  className="anchor"
+  href="link"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <div
+    className="rank"
+    style={
+      Object {
+        "backgroundColor": "#DB2828",
+      }
+    }
+  >
+    1
+  </div>
+  <div
+    className="imgWrapper"
+  >
+    <img
+      alt="name"
+      className="img"
+      src="url"
+    />
+    <div
+      className="name"
+    >
+      name
+    </div>
+  </div>
+  <div
+    className="labelWrapper"
+  >
+    <div
+      className="label-wrapper"
+    >
+      <div
+        className="label-valueGroup"
+      >
+        <i
+          className="fa fa-thumbs-o-up"
+        />
+        <span>
+          1
+        </span>
+      </div>
+      <div
+        className="label-text"
+      >
+        Likes
+      </div>
+    </div>
+    <div
+      className="label-wrapper"
+    >
+      <div
+        className="label-valueGroup"
+      >
+        <i
+          className="fa fa-comments"
+        />
+        <span>
+          2
+        </span>
+      </div>
+      <div
+        className="label-text"
+      >
+        Comments
+      </div>
+    </div>
+    <div
+      className="label-wrapper"
+    >
+      <div
+        className="label-valueGroup"
+      >
+        <i
+          className="fa fa-pencil"
+        />
+        <span>
+          3
+        </span>
+      </div>
+      <div
+        className="label-text"
+      >
+        Posts
+      </div>
+    </div>
+  </div>
+</a>
+`;

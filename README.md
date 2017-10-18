@@ -19,13 +19,7 @@ To know more detail, please read my [post](http://leoj.js.org/personal/React-iTu
 
 1. `git clone git@github.com:LeoAJ/react-facebook-friends.git`
 2. `cd react-facebook-friends`
-3. `npm install`
-
-or use [yarn](https://yarnpkg.com)
-
-```
-yarn
-```
+3. `yarn`
 
 ## Dev
 
@@ -36,14 +30,14 @@ For this app, you will need to require `email`, `public_profile`, `user_friends`
 Then do,
 
 ```
-npm start
+yarn start
 ```
 and go to `localhost:3000`
 
 ## Deploy
 
 ```
-npm run deploy
+yarn deploy
 ```
 
 ## Lint
@@ -51,10 +45,12 @@ npm run deploy
 run eslint, using [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) rules.
 
 ```
-npm run lint
+yarn lint
 ```
 
 ## Test
+
+run `Jest`
 
 ```
 npm test
@@ -70,8 +66,8 @@ npm test
 * Flexbox
 * Webpack
 * Flow
-* Eslint 2.0
-* Karma
+* Eslint
+* Jest
 * Facebook API
 
 ## Contribution

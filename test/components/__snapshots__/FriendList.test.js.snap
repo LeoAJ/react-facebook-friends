@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FriendList component should renders correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="nodata"
+  >
+    No results for: "q"
+  </div>
+</div>
+`;

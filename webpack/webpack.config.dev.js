@@ -9,7 +9,7 @@ webpackConfig.entry = [
 
 webpackConfig.plugins = [
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin()
+  new webpack.NoEmitOnErrorsPlugin()
 ];
 
 export default webpackConfig;
